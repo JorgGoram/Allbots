@@ -1,225 +1,343 @@
 
 .featuresSection {
-  background: linear-gradient(to bottom, #080818, var(--dark-bg));
-  padding: 100px 0;
   position: relative;
+  padding: 120px 0;
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
   overflow: hidden;
 }
 
+.featuresBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.backgroundGradient {
+  position: absolute;
+  top: -300px;
+  right: -300px;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(var(--accent-color-rgb), 0.15), rgba(var(--accent-color-rgb), 0) 70%);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.backgroundGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.7;
+  z-index: 2;
+}
+
 .container {
+  position: relative;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
-  position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .sectionHeader {
   text-align: center;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto 5rem;
 }
 
 .sectionTag {
   display: inline-block;
-  background: rgba(123, 92, 250, 0.15);
-  color: var(--secondary-color);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  background: rgba(var(--accent-color-rgb), 0.1);
   padding: 0.5rem 1rem;
-  border-radius: 20px;
+  border-radius: 30px;
   margin-bottom: 1.5rem;
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
 }
 
 .sectionTitle {
-  font-size: 2.75rem;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
   font-weight: 800;
-  background: linear-gradient(90deg, var(--text-primary), var(--secondary-color));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
-  margin-bottom: 1.5rem;
   line-height: 1.2;
+  margin: 0 0 1.5rem;
+}
+
+.titleGradient {
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
 }
 
 .sectionDescription {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
-  color: var(--text-secondary);
+  margin: 0;
 }
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
 .featureCard {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: var(--border-radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  transition: all var(--transition-normal);
   position: relative;
-  overflow: hidden;
-  height: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
-.featureCard::before {
-  content: '';
+.cardGlow {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--primary-color), transparent);
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(var(--accent-color-rgb), 0.1), transparent 70%);
   opacity: 0;
-  transition: opacity var(--transition-normal);
+  transition: opacity 0.4s ease;
+  z-index: 0;
 }
 
-.featureCard:hover::before {
+.featureCard:hover .cardGlow {
   opacity: 1;
 }
 
 .primaryFeature {
-  background: linear-gradient(145deg, rgba(46, 111, 243, 0.1), rgba(123, 92, 250, 0.05));
-  border: 1px solid rgba(123, 92, 250, 0.2);
-}
-
-.primaryFeature::before {
-  background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-  opacity: 1;
+  background: linear-gradient(135deg, 
+    rgba(var(--accent-color-rgb), 0.15), 
+    rgba(var(--accent-color-rgb), 0.03)
+  );
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
 }
 
 .featureIconContainer {
-  margin-bottom: 1.5rem;
-}
-
-.featureIcon {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background: rgba(var(--accent-color-rgb), 0.1);
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-color);
   margin-bottom: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1;
 }
 
-.primaryFeature .featureIcon {
-  background: rgba(123, 92, 250, 0.15);
-  color: var(--secondary-color);
-  border: 1px solid rgba(123, 92, 250, 0.3);
+.featureIcon {
+  color: var(--accent-color);
+}
+
+.iconGlow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: var(--accent-color);
+  filter: blur(20px);
+  opacity: 0.2;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.primaryFeature:hover .iconGlow {
+  opacity: 0.4;
 }
 
 .featureTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
   color: var(--text-primary);
+  position: relative;
+  z-index: 1;
 }
 
 .featureDescription {
   font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .benefitsList {
   list-style: none;
   padding: 0;
   margin: 0 0 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  flex-grow: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .benefitItem {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.925rem;
-  color: var(--text-primary);
-  opacity: 0.8;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .bulletPoint {
   width: 6px;
   height: 6px;
+  background-color: var(--accent-color);
   border-radius: 50%;
-  background: var(--accent-color);
   flex-shrink: 0;
-}
-
-.primaryFeature .bulletPoint {
-  background: var(--secondary-color);
 }
 
 .learnMore {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--accent-color);
-  cursor: pointer;
-  transition: all var(--transition-normal);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
   margin-top: auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.primaryFeature .learnMore {
-  color: var(--secondary-color);
+.learnMoreIcon {
+  transition: transform 0.3s ease;
+}
+
+.learnMore:hover .learnMoreIcon {
+  transform: translateX(3px);
 }
 
 .featuresCta {
-  margin-top: 5rem;
+  margin-top: 6rem;
+}
+
+.ctaCard {
+  position: relative;
+  background: linear-gradient(135deg,
+    rgba(var(--accent-color-rgb), 0.15),
+    rgba(var(--accent-secondary-rgb), 0.05)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 3rem;
   text-align: center;
-  padding: 4rem 2rem;
-  background: linear-gradient(145deg, rgba(46, 111, 243, 0.1), rgba(123, 92, 250, 0.05));
-  border-radius: var(--border-radius-lg);
-  border: 1px solid rgba(123, 92, 250, 0.2);
+  overflow: hidden;
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ctaGlow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(var(--accent-color-rgb), 0.2), transparent 70%);
+  opacity: 0.3;
+  z-index: 0;
+  transform: rotate(30deg);
+  transition: opacity 0.4s ease;
+}
+
+.ctaCard:hover .ctaGlow {
+  opacity: 0.5;
 }
 
 .ctaTitle {
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  margin: 0 0 1rem;
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
 .ctaDescription {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 2rem;
+  position: relative;
+  z-index: 1;
 }
 
 .ctaButton {
-  display: inline-block;
-  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
   color: white;
+  font-size: 1rem;
   font-weight: 600;
   padding: 1rem 2rem;
-  border-radius: var(--border-radius-md);
+  border-radius: 50px;
   text-decoration: none;
-  transition: all var(--transition-normal);
-  box-shadow: 0 4px 20px rgba(46, 111, 243, 0.3);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 8px 20px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.buttonGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  animation: buttonGlow 3s infinite;
+  z-index: -1;
+}
+
+@keyframes buttonGlow {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* Responsive styles */
@@ -227,87 +345,51 @@
   .featuresGrid {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
-  
-  .sectionTitle {
-    font-size: 2.5rem;
-  }
 }
 
 @media (max-width: 768px) {
   .featuresSection {
-    padding: 80px 0;
-  }
-  
-  .container {
-    padding: 0 1.5rem;
+    padding: 90px 0;
   }
   
   .sectionHeader {
     margin-bottom: 3rem;
   }
   
-  .sectionTitle {
-    font-size: 2rem;
+  .featuresGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
   }
   
-  .sectionDescription {
-    font-size: 1.125rem;
+  .featureCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .ctaCard {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .featuresSection {
+    padding: 70px 0;
   }
   
   .featuresGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
   
-  .featuresCta {
-    padding: 3rem 1.5rem;
+  .sectionTag {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
   }
   
-  .ctaTitle {
-    font-size: 1.75rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .featuresSection {
-    padding: 60px 0;
-  }
-  
-  .container {
-    padding: 0 1rem;
-  }
-  
-  .sectionHeader {
-    margin-bottom: 2.5rem;
-  }
-  
-  .sectionTitle {
-    font-size: 1.75rem;
-  }
-  
-  .sectionDescription {
-    font-size: 1rem;
-  }
-  
-  .featureCard {
-    padding: 1.5rem;
-  }
-  
-  .featureTitle {
-    font-size: 1.25rem;
-  }
-  
-  .featuresCta {
-    padding: 2rem 1rem;
-  }
-  
-  .ctaTitle {
-    font-size: 1.5rem;
+  .featureIconContainer {
+    width: 50px;
+    height: 50px;
   }
   
   .ctaButton {
-    padding: 0.875rem 1.5rem;
-    font-size: 0.925rem;
     width: 100%;
   }
 }

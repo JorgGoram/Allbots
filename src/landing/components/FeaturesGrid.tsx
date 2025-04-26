@@ -17,16 +17,29 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, ben
   return (
     <motion.div 
       className={`${styles.featureCard} ${isPrimary ? styles.primaryFeature : ''}`}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -5, boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)' }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.1,
+        type: "spring",
+        stiffness: 100
+      }}
+      whileHover={{ 
+        y: -8, 
+        boxShadow: isPrimary 
+          ? '0 20px 30px rgba(var(--accent-color-rgb), 0.2)' 
+          : '0 20px 30px rgba(0, 0, 0, 0.2)' 
+      }}
     >
+      <div className={styles.cardGlow}></div>
+      
       <div className={styles.featureIconContainer}>
         <div className={styles.featureIcon}>
           {icon}
         </div>
+        {isPrimary && <div className={styles.iconGlow}></div>}
       </div>
       
       <h3 className={styles.featureTitle}>{title}</h3>
@@ -34,19 +47,26 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, ben
       
       <ul className={styles.benefitsList}>
         {benefits.map((benefit, idx) => (
-          <li key={idx} className={styles.benefitItem}>
+          <motion.li 
+            key={idx} 
+            className={styles.benefitItem}
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: 0.3 + idx * 0.1 }}
+          >
             <div className={styles.bulletPoint}></div>
             {benefit}
-          </li>
+          </motion.li>
         ))}
       </ul>
       
       <motion.div
         className={styles.learnMore}
-        whileHover={{ x: 5 }}
+        whileHover={{ x: 5, color: 'var(--accent-color)' }}
       >
         Learn more
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.learnMoreIcon}>
           <path d="M3.33337 8H12.6667" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M8 3.33331L12.6667 7.99998L8 12.6666" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
@@ -144,20 +164,50 @@ const FeaturesGrid: React.FC = () => {
 
   return (
     <section className={styles.featuresSection} id="features">
+      <div className={styles.featuresBackground}>
+        <div className={styles.backgroundGradient}></div>
+        <div className={styles.backgroundGrid}></div>
+      </div>
+      
       <div className={styles.container}>
         <motion.div 
           className={styles.sectionHeader}
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
         >
-          <span className={styles.sectionTag}>POWERFUL CAPABILITIES</span>
-          <h2 className={styles.sectionTitle}>Transform Your Business with AI Process Automation</h2>
-          <p className={styles.sectionDescription}>
+          <motion.span 
+            className={styles.sectionTag}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            POWERFUL CAPABILITIES
+          </motion.span>
+          
+          <motion.h2 
+            className={styles.sectionTitle}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Transform Your Business with
+            <span className={styles.titleGradient}> AI Process Automation</span>
+          </motion.h2>
+          
+          <motion.p 
+            className={styles.sectionDescription}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             Our comprehensive platform combines intelligent automation, data integration, and 
             AI-powered optimization to revolutionize how your business operates.
-          </p>
+          </motion.p>
         </motion.div>
         
         <div className={styles.featuresGrid}>
@@ -176,23 +226,54 @@ const FeaturesGrid: React.FC = () => {
         
         <motion.div 
           className={styles.featuresCta}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
         >
-          <h3 className={styles.ctaTitle}>Ready to transform your business processes?</h3>
-          <p className={styles.ctaDescription}>
-            Join 10,000+ companies using AllBots.io to automate their operations
-          </p>
-          <motion.a
-            href="#schedule-demo"
-            className={styles.ctaButton}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <motion.div 
+            className={styles.ctaCard}
+            whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(var(--accent-color-rgb), 0.2)' }}
           >
-            Schedule a Personalized Demo
-          </motion.a>
+            <div className={styles.ctaGlow}></div>
+            
+            <motion.h3 
+              className={styles.ctaTitle}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Ready to transform your business processes?
+            </motion.h3>
+            
+            <motion.p 
+              className={styles.ctaDescription}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Join 10,000+ companies using AllBots.io to automate their operations
+            </motion.p>
+            
+            <motion.a
+              href="#schedule-demo"
+              className={styles.ctaButton}
+              whileHover={{ 
+                scale: 1.05, 
+                boxShadow: '0 10px 30px rgba(var(--accent-color-rgb), 0.4)' 
+              }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <span>Schedule a Personalized Demo</span>
+              <span className={styles.buttonGlow}></span>
+            </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

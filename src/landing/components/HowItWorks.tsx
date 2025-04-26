@@ -1,6 +1,6 @@
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import { 
   Search, 
   Settings, 
@@ -9,7 +9,9 @@ import {
   CheckCircle, 
   Clock, 
   Users, 
-  Shield 
+  Shield,
+  ChevronRight,
+  ArrowRight
 } from 'lucide-react';
 import styles from './HowItWorks.module.css';
 
@@ -22,12 +24,17 @@ interface TimelineStep {
   duration: string;
   activities: string[];
   deliverables: string[];
+  color: string;
 }
 
 const HowItWorks: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const stepContentControls = useAnimation();
   
-  // Implementation timeline steps with detailed information
+  // Implementation timeline steps with detailed information and brand colors
   const timelineSteps: TimelineStep[] = [
     {
       phase: 'Phase 1',
@@ -47,7 +54,8 @@ const HowItWorks: React.FC = () => {
         'Technical implementation blueprint',
         'ROI projection document',
         'Project timeline with milestones'
-      ]
+      ],
+      color: 'var(--accent-color)'
     },
     {
       phase: 'Phase 2',
@@ -67,7 +75,8 @@ const HowItWorks: React.FC = () => {
         'API connection documentation',
         'Security compliance report',
         'Initial performance metrics'
-      ]
+      ],
+      color: 'var(--accent-secondary)'
     },
     {
       phase: 'Phase 3',
@@ -87,7 +96,8 @@ const HowItWorks: React.FC = () => {
         'User experience analysis',
         'System optimization recommendations',
         'Go/no-go assessment for full deployment'
-      ]
+      ],
+      color: '#4FACFE'
     },
     {
       phase: 'Phase 4',
@@ -107,54 +117,150 @@ const HowItWorks: React.FC = () => {
         'Training materials and resources',
         'Performance dashboard access',
         'Support and maintenance plan'
-      ]
+      ],
+      color: '#00F2FE'
     }
   ];
 
+  // Auto-advance through timeline steps
+  useEffect(() => {
+    if (!isPaused) {
+      const interval = setInterval(() => {
+        setActiveStep((prev) => (prev + 1) % timelineSteps.length);
+      }, 8000);
+      
+      return () => clearInterval(interval);
+    }
+  }, [isPaused, timelineSteps.length]);
+  
+  // Reset content animation when active step changes
+  useEffect(() => {
+    stepContentControls.start({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: 0.1
+      }
+    });
+  }, [activeStep, stepContentControls]);
+  
+  // Scroll active step into view on mobile
+  useEffect(() => {
+    if (window.innerWidth < 768 && stepRefs.current[activeStep]) {
+      stepRefs.current[activeStep]?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  }, [activeStep]);
+
   return (
     <section className={styles.howItWorksSection} id="implementation-timeline">
+      <div className={styles.timelineBackground}>
+        <div className={styles.backgroundPattern}></div>
+        <div className={styles.backgroundGradient}></div>
+      </div>
+      
       <div className={styles.container}>
         <motion.div
           className={styles.sectionHeader}
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
         >
-          <span className={styles.sectionTag}>IMPLEMENTATION PROCESS</span>
-          <h2 className={styles.sectionTitle}>Your Journey to AI-Powered Process Automation</h2>
-          <p className={styles.sectionDescription}>
+          <motion.span 
+            className={styles.sectionTag}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            IMPLEMENTATION PROCESS
+          </motion.span>
+          
+          <motion.h2 
+            className={styles.sectionTitle}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Your Journey to 
+            <span className={styles.titleHighlight}> AI-Powered Process Automation</span>
+          </motion.h2>
+          
+          <motion.p 
+            className={styles.sectionDescription}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             Our structured implementation approach ensures a smooth transition to automated operations
             with minimal disruption to your business.
-          </p>
+          </motion.p>
         </motion.div>
         
-        <div className={styles.timelineContainer}>
-          {/* Timeline navigation */}
+        <div className={styles.timelineContainer} ref={timelineRef}>
+          {/* Interactive timeline navigation */}
           <div className={styles.timelineNav}>
             {timelineSteps.map((step, index) => (
               <motion.div
                 key={index}
+                ref={el => stepRefs.current[index] = el}
                 className={`${styles.timelineStep} ${activeStep === index ? styles.activeStep : ''}`}
-                onClick={() => setActiveStep(index)}
-                whileHover={{ scale: 1.05 }}
+                onClick={() => {
+                  setActiveStep(index);
+                  setIsPaused(true);
+                }}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+                whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
+                style={{
+                  '--step-color': step.color
+                } as React.CSSProperties}
               >
-                <div className={styles.stepNumber}>{index + 1}</div>
+                <div className={styles.stepNumberContainer}>
+                  <div className={styles.stepNumber}>{index + 1}</div>
+                  {activeStep === index && (
+                    <motion.div 
+                      className={styles.activeIndicator}
+                      layoutId="activeIndicator"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    ></motion.div>
+                  )}
+                </div>
+                
                 <div className={styles.stepInfo}>
                   <div className={styles.stepPhase}>{step.phase}</div>
                   <div className={styles.stepTitle}>{step.title}</div>
                 </div>
+                
+                <motion.div 
+                  className={styles.stepArrow}
+                  animate={{ x: activeStep === index ? 0 : -10, opacity: activeStep === index ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ChevronRight size={16} />
+                </motion.div>
               </motion.div>
             ))}
           </div>
           
           {/* Timeline progress bar */}
           <div className={styles.timelineProgress}>
-            <div 
+            <motion.div 
               className={styles.timelineProgressBar} 
-              style={{ width: `${(activeStep / (timelineSteps.length - 1)) * 100}%` }}
-            ></div>
+              animate={{ 
+                width: `${(activeStep / (timelineSteps.length - 1)) * 100}%`,
+                background: timelineSteps[activeStep].color
+              }}
+              transition={{ duration: 0.5 }}
+            ></motion.div>
           </div>
           
           {/* Timeline content */}
@@ -162,35 +268,68 @@ const HowItWorks: React.FC = () => {
             <motion.div
               key={activeStep}
               className={styles.timelineContent}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.4 }}
             >
-              <div className={styles.stepContentWrapper}>
-                <div className={styles.stepIconContainer}>
+              <motion.div 
+                className={styles.stepContentWrapper}
+                animate={stepContentControls}
+                initial={{ opacity: 0, y: 20 }}
+              >
+                <motion.div 
+                  className={styles.stepIconContainer}
+                  style={{ 
+                    background: `linear-gradient(135deg, ${timelineSteps[activeStep].color}, ${timelineSteps[activeStep].color}88)` 
+                  }}
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    boxShadow: [
+                      `0 0 20px rgba(0, 0, 0, 0.2)`,
+                      `0 0 30px ${timelineSteps[activeStep].color}33`,
+                      `0 0 20px rgba(0, 0, 0, 0.2)`
+                    ]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                >
                   {timelineSteps[activeStep].icon}
-                </div>
+                </motion.div>
                 
                 <div className={styles.stepContentMain}>
                   <div className={styles.stepHeader}>
-                    <h3 className={styles.stepTitleLarge}>
+                    <motion.h3 
+                      className={styles.stepTitleLarge}
+                      style={{ color: timelineSteps[activeStep].color }}
+                    >
                       {timelineSteps[activeStep].title}
-                    </h3>
-                    <div className={styles.stepDuration}>
-                      <Clock className={styles.durationIcon} />
+                    </motion.h3>
+                    <motion.div 
+                      className={styles.stepDuration}
+                      whileHover={{ scale: 1.05, backgroundColor: `${timelineSteps[activeStep].color}22` }}
+                    >
+                      <Clock className={styles.durationIcon} size={16} />
                       <span>{timelineSteps[activeStep].duration}</span>
-                    </div>
+                    </motion.div>
                   </div>
                   
-                  <p className={styles.stepDescription}>
+                  <motion.p 
+                    className={styles.stepDescription}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  >
                     {timelineSteps[activeStep].description}
-                  </p>
+                  </motion.p>
                   
                   <div className={styles.stepDetails}>
                     <div className={styles.stepActivities}>
                       <h4 className={styles.detailsTitle}>
-                        <CheckCircle className={styles.detailsIcon} />
+                        <CheckCircle className={styles.detailsIcon} style={{ color: timelineSteps[activeStep].color }} />
                         Key Activities
                       </h4>
                       <ul className={styles.detailsList}>
@@ -199,8 +338,10 @@ const HowItWorks: React.FC = () => {
                             key={index}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                            whileHover={{ x: 5, color: timelineSteps[activeStep].color }}
                           >
+                            <span className={styles.detailBullet} style={{ backgroundColor: timelineSteps[activeStep].color }}></span>
                             {activity}
                           </motion.li>
                         ))}
@@ -209,7 +350,7 @@ const HowItWorks: React.FC = () => {
                     
                     <div className={styles.stepDeliverables}>
                       <h4 className={styles.detailsTitle}>
-                        <Shield className={styles.detailsIcon} />
+                        <Shield className={styles.detailsIcon} style={{ color: timelineSteps[activeStep].color }} />
                         Deliverables
                       </h4>
                       <ul className={styles.detailsList}>
@@ -218,8 +359,10 @@ const HowItWorks: React.FC = () => {
                             key={index}
                             initial={{ opacity: 0, x: -10 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                            whileHover={{ x: 5, color: timelineSteps[activeStep].color }}
                           >
+                            <span className={styles.detailBullet} style={{ backgroundColor: timelineSteps[activeStep].color }}></span>
                             {deliverable}
                           </motion.li>
                         ))}
@@ -227,20 +370,47 @@ const HowItWorks: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
         </div>
         
         <div className={styles.timelineFooter}>
-          <div className={styles.clientSuccess}>
+          <motion.div 
+            className={styles.clientSuccess}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            whileHover={{ y: -5, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)' }}
+          >
             <div className={styles.clientSuccessHeader}>
-              <Users className={styles.clientSuccessIcon} />
+              <motion.div 
+                className={styles.clientSuccessIcon}
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  boxShadow: [
+                    '0 0 20px rgba(var(--accent-color-rgb), 0.2)',
+                    '0 0 30px rgba(var(--accent-color-rgb), 0.4)',
+                    '0 0 20px rgba(var(--accent-color-rgb), 0.2)'
+                  ]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatType: "reverse"
+                }}
+              >
+                <Users size={28} />
+              </motion.div>
+              
               <h3 className={styles.clientSuccessTitle}>Client Success Guarantee</h3>
             </div>
+            
             <p className={styles.clientSuccessDescription}>
               Our implementation process is backed by a 100% satisfaction guarantee. If you're not completely satisfied with the results after the pilot phase, we'll refine the solution at no additional cost until you achieve your desired outcomes.
             </p>
+            
             <motion.div 
               className={styles.successMetrics}
               initial={{ opacity: 0 }}
@@ -248,37 +418,61 @@ const HowItWorks: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <div className={styles.metric}>
-                <div className={styles.metricValue}>98%</div>
-                <div className={styles.metricLabel}>Implementation Success Rate</div>
-              </div>
-              <div className={styles.metric}>
-                <div className={styles.metricValue}>3.5x</div>
-                <div className={styles.metricLabel}>Average ROI within 6 months</div>
-              </div>
-              <div className={styles.metric}>
-                <div className={styles.metricValue}>24/7</div>
-                <div className={styles.metricLabel}>Expert Support</div>
-              </div>
+              {[
+                { value: '98%', label: 'Implementation Success Rate' },
+                { value: '3.5x', label: 'Average ROI within 6 months' },
+                { value: '24/7', label: 'Expert Support' }
+              ].map((metric, index) => (
+                <motion.div 
+                  key={index}
+                  className={styles.metric}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                  whileHover={{ y: -5, background: 'rgba(var(--accent-color-rgb), 0.1)' }}
+                >
+                  <div className={styles.metricValue}>{metric.value}</div>
+                  <div className={styles.metricLabel}>{metric.label}</div>
+                </motion.div>
+              ))}
             </motion.div>
-          </div>
+          </motion.div>
         </div>
         
         <motion.div 
           className={styles.timelineCta}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7 }}
         >
-          <h3 className={styles.ctaTitle}>Ready to start your transformation journey?</h3>
+          <motion.h3 
+            className={styles.ctaTitle}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Ready to start your transformation journey?
+          </motion.h3>
+          
           <motion.a
             href="#schedule-assessment"
             className={styles.ctaButton}
-            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ 
+              scale: 1.05, 
+              boxShadow: '0 10px 30px rgba(var(--accent-color-rgb), 0.4)' 
+            }}
             whileTap={{ scale: 0.95 }}
           >
-            Schedule a Free Assessment Call
+            <span>Schedule a Free Assessment Call</span>
+            <ArrowRight className={styles.buttonIcon} size={18} />
+            <span className={styles.buttonGlow}></span>
           </motion.a>
         </motion.div>
       </div>
