@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --background-secondary: 0 0% 5%;
+    
+    /* Glow colors for 3D cards */
+    --white-glow: rgba(255, 255, 255, 0.3);
+    --accent-blue-glow: rgba(46, 111, 243, 0.3);
+    --accent-secondary-glow: rgba(123, 92, 250, 0.3);
+    --accent-cyan-glow: rgba(44, 206, 217, 0.3);
+    --accent-yellow-glow: rgba(255, 181, 71, 0.3);
+    --success-glow: rgba(34, 197, 94, 0.3);
+    --warning-glow: rgba(255, 181, 71, 0.3);
+    --error-glow: rgba(239, 68, 68, 0.3);
+  }
+
+  body {
+    @apply bg-black text-white antialiased overflow-x-hidden;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Improve tap target sizes on mobile */
+  button, a {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Better focus styles */
+  :focus-visible {
+    @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-black;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass-effect {
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.08];
+  }
+  
+  .glass-card {
+    @apply relative rounded-xl border border-white/[0.05] bg-black/20 p-6;
+  }
+  
+  .glow-effect {
+    @apply relative;
+    @apply after:absolute after:inset-0 after:rounded-xl after:bg-gradient-to-b after:from-white/20 after:to-transparent after:opacity-0 after:transition-opacity;
+    @apply hover:after:opacity-100;
+  }
+
+  .quantum-border {
+    @apply border border-white/[0.08] relative;
+    @apply before:absolute before:inset-0 before:rounded-xl before:p-[1px] before:bg-gradient-to-r before:from-white/30 before:to-white/30 before:opacity-0;
+    @apply hover:before:opacity-100 before:transition-opacity;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-white/[0.01] rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-white/[0.1] rounded-full hover:bg-white/[0.15];
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black/20;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-white/20 hover:bg-white/30;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .touch-scroll {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+  }
+
+  .touch-scroll > * {
+    scroll-snap-align: start;
+  }
+
+  /* Prevent text size adjustment */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
