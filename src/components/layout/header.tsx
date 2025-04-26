@@ -7,7 +7,7 @@ const Header = () => {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed top-0 right-0 left-0 lg:left-64 z-50 bg-black/90 backdrop-blur-md border-b border-white/[0.05]"
+      className="fixed top-0 right-0 left-0 lg:left-64 z-40 bg-black/90 backdrop-blur-md border-b border-white/[0.05]"
     >
       <div className="h-16 md:h-20 border-b border-white/[0.05] bg-black/90 backdrop-blur-md px-4 md:px-6 lg:px-8 flex items-center justify-between">
         {/* Left spacing for mobile menu button */}
