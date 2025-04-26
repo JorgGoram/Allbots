@@ -8,6 +8,13 @@
   :root {
     --background: 0 0% 0%;
     --background-secondary: 0 0% 5%;
+    --header-height: 5rem;
+  }
+
+  /* Add padding for fixed header */
+  main, .main-content {
+    padding-top: var(--header-height);
+  }
     
     /* Glow colors for 3D cards */
     --white-glow: rgba(255, 255, 255, 0.3);
