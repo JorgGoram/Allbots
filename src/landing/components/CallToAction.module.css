@@ -302,6 +302,41 @@
   .pricingGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricingGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .packageCard {
+    max-width: 100%;
+  }
+
+  .packageFeatures {
+    padding: 1rem;
+  }
+
+  .clientLogos {
+    gap: 1.5rem;
+  }
+
+  .guaranteeSection {
+    padding: 2rem 1rem;
+    margin: 2rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sectionTitle {
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+  }
+
+  .packageButton {
+    width: 100%;
   }
 }
 

@@ -95,9 +95,10 @@
 
 .featuresGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1rem, 3vw, 2rem) 0;
+  width: 100%;
 }
 
 .featureCard {
@@ -370,6 +371,17 @@
   .sectionDescription {
     font-size: 1.1rem;
   }
+  .featureCard {
+    padding: 1.5rem;
+  }
+
+  .sectionHeader {
+    padding: 0 1rem;
+  }
+
+  .sectionTitle {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+  }
 }
 
 @media (max-width: 640px) {
@@ -410,6 +422,9 @@
 
   .featureTitle {
     font-size: 1.3rem;
+  }
+  .featuresGrid {
+    grid-template-columns: 1fr;
   }
 }
 

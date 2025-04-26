@@ -114,10 +114,11 @@
 
 .timelineNav {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  margin-bottom: clamp(1.5rem, 4vw, 2rem);
   position: relative;
   z-index: 4;
+  flex-wrap: wrap;
 }
 
 .timelineStep {
@@ -675,6 +676,7 @@
     padding: 1rem;
     scroll-snap-align: start;
     flex-shrink: 0;
+    min-height: 80px;
   }
   .timelineStep:first-child {
     margin-left: 0;
@@ -702,6 +704,7 @@
   .stepDetails {
     text-align: left;
     width: 100%;
+    grid-template-columns: 1fr;
   }
   .timelineProgress {
     margin: 0 0 1.5rem;
@@ -722,7 +725,7 @@
     padding: 0 1rem;
   }
   .timelineContainer {
-    padding: 0;
+    padding: 1rem;
   }
   .timelineNav::-webkit-scrollbar {
     height: 4px;
