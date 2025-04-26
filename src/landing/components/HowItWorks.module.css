@@ -662,4 +662,61 @@
     width: 100%;
     padding: 1rem 1.5rem;
   }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .titleHighlight {
+    display: inline;
+    white-space: normal;
+  }
+  
+  .stepDetails {
+    margin-top: 1rem;
+  }
+  
+  .detailsTitle {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .howItWorksSection {
+    padding: 60px 0;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
+  
+  .timelineStep {
+    min-width: 180px;
+    padding: 0.8rem;
+  }
+  
+  .stepTitle {
+    font-size: 0.9rem;
+  }
+  
+  .stepPhase {
+    font-size: 0.8rem;
+  }
+  
+  .stepTitleLarge {
+    font-size: 1.4rem;
+  }
+  
+  .stepContentWrapper {
+    gap: 1.5rem;
+  }
+  
+  .ctaTitle {
+    font-size: 1.5rem;
+  }
+  
+  .metric {
+    padding: 1rem;
+  }
 }

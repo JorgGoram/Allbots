@@ -2,228 +2,207 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Mail, 
-  Phone, 
-  MessageSquare, 
+  Bot, 
+  ChevronRight, 
   Twitter, 
   Linkedin, 
   Facebook, 
   Instagram, 
-  Youtube,
-  Bot,
-  ArrowRight
+  Mail, 
+  Send, 
+  ExternalLink 
 } from 'lucide-react';
 import styles from './Footer.module.css';
 
-const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
-  
-  // Quick links for footer navigation
-  const quickLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Features', href: '#features' },
-    { name: 'Implementation', href: '#implementation-timeline' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contact', href: '#contact' },
-  ];
-  
-  // Services links
-  const servicesLinks = [
-    { name: 'AI Strategy & Planning', href: '#services-strategy' },
-    { name: 'AI Voice Development', href: '#services-voice' },
-    { name: 'Process Automation', href: '#services-automation' },
-    { name: 'CRM/ERP Integration', href: '#services-integration' },
-    { name: 'Custom AI Solutions', href: '#services-custom' },
-    { name: 'Training & Support', href: '#services-training' },
-  ];
-  
-  // Industry solutions
-  const industriesLinks = [
-    { name: 'Healthcare', href: '#industry-healthcare' },
-    { name: 'Finance', href: '#industry-finance' },
-    { name: 'Retail', href: '#industry-retail' },
-    { name: 'Manufacturing', href: '#industry-manufacturing' },
-    { name: 'Telecommunications', href: '#industry-telecom' },
-    { name: 'Education', href: '#industry-education' },
-  ];
-  
-  // Social media links
-  const socialLinks = [
-    { icon: <Twitter size={20} />, href: '#' },
-    { icon: <Linkedin size={20} />, href: '#' },
-    { icon: <Facebook size={20} />, href: '#' },
-    { icon: <Instagram size={20} />, href: '#' },
-    { icon: <Youtube size={20} />, href: '#' },
-  ];
-  
-  // Contact information
-  const contactInfo = [
-    { 
-      icon: <Mail size={18} />, 
-      label: 'Email', 
-      value: 'contact@allbots.io',
-      href: 'mailto:contact@allbots.io'
-    },
-    { 
-      icon: <Phone size={18} />, 
-      label: 'Phone', 
-      value: '+1 (888) 123-4567',
-      href: 'tel:+18881234567'
-    },
-    { 
-      icon: <MessageSquare size={18} />, 
-      label: 'Live Chat', 
-      value: 'Start a conversation',
-      href: '#chat'
-    },
-  ];
-  
-  // Awards and certifications
-  const certifications = [
-    'ISO 27001 Certified',
-    'SOC 2 Compliant',
-    'GDPR Compliant',
-    'HIPAA Compliant',
-    'AI Ethics Framework'
-  ];
+const FooterNavGroup = ({ title, links }: { title: string, links: string[] }) => (
+  <motion.div 
+    className={styles.footerNavGroup}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5 }}
+  >
+    <h3 className={styles.navGroupTitle}>{title}</h3>
+    <ul className={styles.navList}>
+      {links.map((link, index) => (
+        <motion.li 
+          key={index}
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.3, delay: 0.1 + index * 0.05 }}
+        >
+          <a href="#" className={styles.navItem}>
+            <ChevronRight size={14} className={styles.navIcon} />
+            <span className={styles.navItemText}>{link}</span>
+          </a>
+        </motion.li>
+      ))}
+    </ul>
+  </motion.div>
+);
 
+const Footer: React.FC = () => {
+  const productLinks = [
+    'AI Automation Platform', 
+    'Process Optimization', 
+    'Enterprise Integration', 
+    'Advanced Analytics',
+    'Security Features'
+  ];
+  
+  const companyLinks = [
+    'About Us', 
+    'Our Team', 
+    'Careers', 
+    'Press', 
+    'Contact Us'
+  ];
+  
+  const resourceLinks = [
+    'Documentation',
+    'Knowledge Base',
+    'API Reference',
+    'Case Studies',
+    'Blog'
+  ];
+  
+  const socialLinks = [
+    { icon: <Twitter size={18} />, url: '#' },
+    { icon: <Linkedin size={18} />, url: '#' },
+    { icon: <Facebook size={18} />, url: '#' },
+    { icon: <Instagram size={18} />, url: '#' },
+  ];
+  
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footerSection}>
+      <div className={styles.footerBackground}>
+        <div className={styles.footerGrid}></div>
+      </div>
+      
       <div className={styles.container}>
         <div className={styles.footerTop}>
-          <div className={styles.footerLogoSection}>
-            <div className={styles.logo}>
-              <Bot className={styles.logoIcon} />
-              <span className={styles.logoText}>AllBots.io</span>
-            </div>
+          <motion.div 
+            className={styles.companyInfo}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.div 
+              className={styles.logoContainer}
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className={styles.logo}>
+                <Bot className={styles.logoIcon} />
+                AllBots.io
+              </div>
+            </motion.div>
             
             <p className={styles.companyDescription}>
-              Transforming businesses through AI-powered process automation. 
-              We help organizations streamline operations, reduce costs, and 
-              deliver exceptional experiences.
+              Leading the innovation in enterprise AI automation solutions, 
+              enabling businesses to transform their operations with cutting-edge 
+              technology and actionable insights.
             </p>
             
-            <div className={styles.newsletter}>
-              <h4 className={styles.newsletterTitle}>Stay Updated</h4>
-              <p className={styles.newsletterSubtitle}>
-                Subscribe to our newsletter for AI automation insights
-              </p>
-              
-              <form className={styles.subscribeForm}>
-                <input 
-                  type="email" 
-                  placeholder="Your email address" 
-                  className={styles.emailInput} 
-                  required 
-                />
-                <motion.button 
-                  type="submit" 
-                  className={styles.subscribeButton}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+            <div className={styles.socialLinks}>
+              {socialLinks.map((link, index) => (
+                <motion.a 
+                  key={index}
+                  href={link.url}
+                  className={styles.socialLink}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: 0.2 + index * 0.1 }}
+                  whileHover={{ y: -5, backgroundColor: 'rgba(var(--accent-color-rgb), 0.2)' }}
                 >
-                  <ArrowRight size={18} />
-                </motion.button>
-              </form>
+                  {link.icon}
+                </motion.a>
+              ))}
             </div>
-          </div>
+          </motion.div>
           
-          <div className={styles.footerLinks}>
-            <div className={styles.linkColumn}>
-              <h4 className={styles.columnTitle}>Quick Links</h4>
-              <ul className={styles.linksList}>
-                {quickLinks.map((link, index) => (
-                  <motion.li 
-                    key={index}
-                    whileHover={{ x: 5 }}
-                  >
-                    <a href={link.href}>{link.name}</a>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
+          <FooterNavGroup title="Product" links={productLinks} />
+          <FooterNavGroup title="Company" links={companyLinks} />
+          <FooterNavGroup title="Resources" links={resourceLinks} />
+          
+          <motion.div 
+            className={styles.newsletterContainer}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className={styles.navGroupTitle}>Subscribe to Our Newsletter</h3>
+            <p className={styles.newsletterDescription}>
+              Stay updated with the latest in AI automation and get exclusive insights and tips delivered to your inbox.
+            </p>
             
-            <div className={styles.linkColumn}>
-              <h4 className={styles.columnTitle}>Services</h4>
-              <ul className={styles.linksList}>
-                {servicesLinks.map((link, index) => (
-                  <motion.li 
-                    key={index}
-                    whileHover={{ x: 5 }}
-                  >
-                    <a href={link.href}>{link.name}</a>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className={styles.linkColumn}>
-              <h4 className={styles.columnTitle}>Industry Solutions</h4>
-              <ul className={styles.linksList}>
-                {industriesLinks.map((link, index) => (
-                  <motion.li 
-                    key={index}
-                    whileHover={{ x: 5 }}
-                  >
-                    <a href={link.href}>{link.name}</a>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className={styles.linkColumn}>
-              <h4 className={styles.columnTitle}>Contact Us</h4>
-              <ul className={styles.contactList}>
-                {contactInfo.map((contact, index) => (
-                  <li key={index} className={styles.contactItem}>
-                    <div className={styles.contactIcon}>
-                      {contact.icon}
-                    </div>
-                    <div className={styles.contactDetails}>
-                      <span className={styles.contactLabel}>{contact.label}</span>
-                      <a href={contact.href} className={styles.contactValue}>{contact.value}</a>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-              
-              <div className={styles.socialLinks}>
-                {socialLinks.map((social, index) => (
-                  <motion.a 
-                    key={index} 
-                    href={social.href}
-                    className={styles.socialIcon}
-                    whileHover={{ y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {social.icon}
-                  </motion.a>
-                ))}
-              </div>
-            </div>
-          </div>
+            <form className={styles.newsletterForm}>
+              <motion.input 
+                type="email" 
+                placeholder="Your email address" 
+                className={styles.newsletterInput}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                whileFocus={{ borderColor: 'var(--accent-color)' }}
+              />
+              <motion.button 
+                type="submit" 
+                className={styles.newsletterButton}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  backgroundColor: 'var(--accent-secondary)' 
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Send size={16} />
+              </motion.button>
+            </form>
+          </motion.div>
         </div>
         
-        <div className={styles.certifications}>
-          <h4 className={styles.certificationsTitle}>Our Certifications</h4>
-          <div className={styles.certificationsIcons}>
-            {certifications.map((cert, index) => (
-              <div key={index} className={styles.certBadge}>{cert}</div>
-            ))}
-          </div>
-        </div>
+        <motion.div 
+          className={styles.divider}
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        ></motion.div>
         
         <div className={styles.footerBottom}>
-          <div className={styles.copyright}>
-            © {currentYear} AllBots.io. All rights reserved.
-          </div>
+          <motion.div 
+            className={styles.copyright}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            © {new Date().getFullYear()} AllBots.io. All rights reserved.
+          </motion.div>
           
           <div className={styles.legalLinks}>
-            <a href="#privacy" className={styles.legalLink}>Privacy Policy</a>
-            <a href="#terms" className={styles.legalLink}>Terms of Service</a>
-            <a href="#cookies" className={styles.legalLink}>Cookie Policy</a>
+            {['Terms of Service', 'Privacy Policy', 'Cookies', 'Accessibility'].map((link, index) => (
+              <motion.a 
+                key={index}
+                href="#"
+                className={styles.legalLink}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                whileHover={{ color: 'var(--accent-color)' }}
+              >
+                {link}
+              </motion.a>
+            ))}
           </div>
         </div>
       </div>

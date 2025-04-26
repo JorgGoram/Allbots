@@ -1,0 +1,680 @@
+
+.ctaSection {
+  position: relative;
+  padding: 120px 0;
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.ctaBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.bgPattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.bgGradient {
+  position: absolute;
+  top: -20%;
+  right: -30%;
+  width: 80%;
+  height: 140%;
+  background: radial-gradient(ellipse at center, rgba(var(--accent-color-rgb), 0.15), rgba(var(--accent-color-rgb), 0) 70%);
+  opacity: 0.6;
+  transform: rotate(-20deg);
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  z-index: 3;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 5rem;
+}
+
+.sectionTag {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  background: rgba(var(--accent-color-rgb), 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+}
+
+.sectionTitle {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 1.5rem;
+}
+
+.titleAccent {
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.sectionDescription {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.packagesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.packageCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.packageGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0%, rgba(var(--accent-color-rgb), 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.packageCard:hover .packageGlow {
+  opacity: 1;
+}
+
+.recommendedPackage {
+  background: linear-gradient(135deg, 
+    rgba(var(--accent-color-rgb), 0.15), 
+    rgba(var(--accent-color-rgb), 0.03)
+  );
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+  z-index: 1;
+}
+
+.recommendedBadge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.recommendedIcon {
+  display: inline-flex;
+}
+
+.packageIconContainer {
+  margin-bottom: 2rem;
+}
+
+.packageIcon {
+  width: 60px;
+  height: 60px;
+  background: rgba(var(--accent-color-rgb), 0.1);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  position: relative;
+}
+
+.packageTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.packagePrice {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.priceSaving {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+}
+
+.originalPrice {
+  text-decoration: line-through;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.savingLabel {
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.packageDescription {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.packageFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.highlightedFeature {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.featureIcon {
+  color: var(--accent-color);
+  flex-shrink: 0;
+}
+
+.packageButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-top: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.primaryButton {
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  color: white;
+  border: none;
+  box-shadow: 0 8px 20px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.buttonIcon {
+  flex-shrink: 0;
+}
+
+.arrowIcon {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.packageButton:hover .arrowIcon {
+  transform: translateX(3px);
+}
+
+.buttonGlow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: translateX(-100%);
+  animation: buttonGlow 3s infinite;
+  z-index: 0;
+}
+
+@keyframes buttonGlow {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.guaranteeSection {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 2.5rem;
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.guaranteeIcon {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.shieldIcon {
+  width: 35px;
+  height: 35px;
+}
+
+.guaranteeContent {
+  flex: 1;
+}
+
+.guaranteeTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.guaranteeDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.clientsSection {
+  padding-top: 2rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.clientsTitle {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0 0 2rem;
+  color: var(--text-primary);
+}
+
+.clientLogos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.logoPlaceholder {
+  width: 120px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+}
+
+.testimonialHighlight {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonialContent {
+  position: relative;
+  z-index: 1;
+}
+
+.quoteMarks {
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  font-size: 150px;
+  color: rgba(var(--accent-color-rgb), 0.1);
+  font-family: Georgia, serif;
+  font-weight: 700;
+  line-height: 1;
+  z-index: -1;
+}
+
+.testimonialQuote {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 2rem;
+  text-align: left;
+}
+
+.highlightedText {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.authorAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-color), var(--accent-secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.avatarIcon {
+  width: 25px;
+  height: 25px;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.authorTitle {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.finalCta {
+  padding-top: 2rem;
+}
+
+.ctaCard {
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(var(--accent-color-rgb), 0.15), 
+    rgba(var(--accent-secondary-rgb), 0.05)
+  );
+  border-radius: 30px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 1px solid rgba(var(--accent-color-rgb), 0.2);
+  transition: all 0.3s ease;
+}
+
+.ctaGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(var(--accent-color-rgb), 0.2), transparent 70%);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin-bottom: 2.5rem;
+}
+
+.finalCtaTitle {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin: 0 0 1.5rem;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.finalCtaDescription {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.finalCtaButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 250px;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 8px 20px rgba(var(--accent-color-rgb), 0.3);
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .packagesContainer {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .packageCard {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .ctaSection {
+    padding: 90px 0;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 3rem;
+  }
+  
+  .guaranteeSection {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .testimonialQuote {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .packagesContainer {
+    grid-template-columns: 1fr;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .clientLogos {
+    gap: 1.5rem;
+  }
+  
+  .testimonialHighlight {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .ctaSection {
+    padding: 70px 0;
+  }
+  
+  .sectionTag {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .packagePrice {
+    font-size: 2.5rem;
+  }
+  
+  .guaranteeSection {
+    padding: 1.5rem;
+  }
+  
+  .guaranteeIcon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .guaranteeTitle {
+    font-size: 1.4rem;
+  }
+  
+  .guaranteeDescription {
+    font-size: 1rem;
+  }
+  
+  .testimonialQuote {
+    font-size: 1.1rem;
+  }
+  
+  .finalCtaTitle {
+    font-size: 1.8rem;
+  }
+  
+  .finalCtaDescription {
+    font-size: 1.1rem;
+  }
+  
+  .finalCtaButton {
+    width: 100%;
+    min-width: 0;
+    padding: 1rem 1.5rem;
+  }
+  
+  .logoPlaceholder {
+    width: 100px;
+    height: 35px;
+  }
+}

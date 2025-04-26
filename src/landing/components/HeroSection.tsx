@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation, useInView, AnimatePresence } from 'framer-motion';
 import styles from './HeroSection.module.css';
@@ -11,13 +10,13 @@ const HeroSection: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(heroRef, { once: true, amount: 0.3 });
   const [isLoaded, setIsLoaded] = useState(false);
-  
+
   // Trigger animations when component mounts and when in view
   useEffect(() => {
     if (isInView) {
       controls.start('visible');
       textControls.start('visible');
-      
+
       // Set loaded after initial animations
       setTimeout(() => setIsLoaded(true), 800);
     }
@@ -25,7 +24,7 @@ const HeroSection: React.FC = () => {
 
   // Kinetic typography - Split the title text for individual letter animations
   const titleWords = ["Transform Your Business with", "AI-Powered Process Automation"];
-  
+
   // Enhanced stats with compelling metrics
   const stats = [
     { value: '85%', label: 'Reduced Process Time', highlight: true },
@@ -33,7 +32,7 @@ const HeroSection: React.FC = () => {
     { value: '24/7', label: 'Automated Operations', highlight: false },
     { value: '10K+', label: 'Business Users', highlight: false },
   ];
-  
+
   // Comprehensive benefits with enhanced messaging
   const benefits = [
     { text: 'Eliminate manual data processing tasks', icon: <Zap className={styles.benefitIcon} size={18} /> },
@@ -54,7 +53,7 @@ const HeroSection: React.FC = () => {
           <div className={styles.orb} style={{ '--delay': '4s' } as React.CSSProperties}></div>
         </div>
       </div>
-      
+
       <div className={styles.container}>
         <div className={styles.heroContent}>
           {/* Main content with enhanced animations */}
@@ -81,7 +80,7 @@ const HeroSection: React.FC = () => {
                 ENTERPRISE AI SOLUTION
               </motion.span>
             </motion.div>
-            
+
             {/* Primary headline with kinetic typography for each character */}
             <h1 className={styles.title}>
               {titleWords.map((line, lineIndex) => (
@@ -122,7 +121,7 @@ const HeroSection: React.FC = () => {
                 </div>
               ))}
             </h1>
-            
+
             {/* Enhanced subtitle with value proposition */}
             <motion.p 
               className={styles.subtitle}
@@ -132,7 +131,7 @@ const HeroSection: React.FC = () => {
             >
               Automate complex business workflows, reduce operational costs by up to <strong>85%</strong>, and free your team from repetitive tasks with our enterprise-grade AI automation platform.
             </motion.p>
-            
+
             {/* Quick benefits list with improved animations */}
             <motion.ul 
               className={styles.benefitsList}
@@ -162,7 +161,7 @@ const HeroSection: React.FC = () => {
                 </motion.li>
               ))}
             </motion.ul>
-            
+
             {/* Enhanced CTA section with dynamic hover effects */}
             <div className={styles.ctaContainer}>
               <motion.a
@@ -183,7 +182,7 @@ const HeroSection: React.FC = () => {
                 </span>
                 <span className={styles.buttonGlow}></span>
               </motion.a>
-              
+
               <motion.a
                 href="#demo"
                 className={styles.secondaryButton}
@@ -199,7 +198,7 @@ const HeroSection: React.FC = () => {
               >
                 Watch Demo <span className={styles.timeIndicator}>(2 min)</span>
               </motion.a>
-              
+
               <motion.p 
                 className={styles.noCreditCard}
                 initial={{ opacity: 0 }}
@@ -210,7 +209,7 @@ const HeroSection: React.FC = () => {
               </motion.p>
             </div>
           </motion.div>
-          
+
           {/* Enhanced visual side with interactive animation */}
           <motion.div 
             className={styles.visualContent}
@@ -311,7 +310,7 @@ const HeroSection: React.FC = () => {
             </div>
           </motion.div>
         </div>
-        
+
         {/* Enhanced stats section with counters */}
         <motion.div 
           className={styles.statsContainer}
@@ -349,7 +348,7 @@ const HeroSection: React.FC = () => {
             </motion.div>
           ))}
         </motion.div>
-        
+
         {/* Trust signals section with logo animation */}
         <motion.div 
           className={styles.trustSignals}
@@ -397,36 +396,36 @@ const CounterAnimation = ({ value }: { value: string }) => {
   const numericMatch = value.match(/(\d+\.?\d*|\.\d+)/);
   const numeric = numericMatch ? parseFloat(numericMatch[0]) : 0;
   const unit = value.replace(numeric.toString(), '');
-  
+
   const [count, setCount] = useState(0);
   const countRef = useRef<HTMLSpanElement>(null);
   const isInView = useInView(countRef, { once: true, amount: 0.5 });
-  
+
   useEffect(() => {
     if (isInView) {
       let start = 0;
       const end = numeric;
       const duration = 2000; // 2 seconds
       const startTime = Date.now();
-      
+
       const timer = setInterval(() => {
         const elapsedTime = Date.now() - startTime;
         const progress = Math.min(elapsedTime / duration, 1);
-        
+
         // Easing function for smooth slowdown
         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
         setCount(Math.floor(easeOutQuart * end));
-        
+
         if (progress === 1) {
           clearInterval(timer);
           setCount(end);
         }
       }, 16);
-      
+
       return () => clearInterval(timer);
     }
   }, [isInView, numeric]);
-  
+
   return (
     <span ref={countRef}>
       <span>{count}</span>{unit}
@@ -435,3 +434,93 @@ const CounterAnimation = ({ value }: { value: string }) => {
 };
 
 export default HeroSection;
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 80px 0 40px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .titleLine {
+    white-space: normal;
+    overflow: visible;
+  }
+
+  .titleLineGradient {
+    display: inline-block;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .benefitsList {
+    grid-template-columns: 1fr;
+  }
+
+  .primaryButton, .secondaryButton {
+    width: 100%;
+  }
+
+  .ctaContainer {
+    width: 100%;
+  }
+
+  .statsContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+  }
+
+  .clientLogos {
+    gap: 1.5rem;
+  }
+
+  .logoPlaceholder {
+    width: 100px;
+    height: 35px;
+  }
+
+  .heroIllustration {
+    height: 280px;
+  }
+
+  .botIconContainer {
+    width: 80px;
+    height: 80px;
+  }
+
+  .botIcon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 70px 0 40px;
+  }
+
+  .eyebrow {
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .statsContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .noCreditCard {
+    text-align: center;
+  }
+}

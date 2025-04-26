@@ -392,4 +392,43 @@
   .ctaButton {
     width: 100%;
   }
+  
+  .ctaCard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .ctaTitle {
+    font-size: 1.6rem;
+  }
+  
+  .ctaDescription {
+    font-size: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .titleGradient {
+    display: inline;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 480px) {
+  .featuresSection {
+    padding: 60px 0;
+  }
+  
+  .sectionHeader {
+    margin-bottom: 2rem;
+  }
+  
+  .featureCard {
+    padding: 1.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 1.8rem;
+  }
 }
