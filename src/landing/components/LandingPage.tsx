@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import HeroSection from './HeroSection';
 import FeaturesGrid from './FeaturesGrid';
