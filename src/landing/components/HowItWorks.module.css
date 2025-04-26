@@ -1,0 +1,107 @@
+
+.howItWorksSection {
+  padding: 6rem 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(46, 111, 243, 0.05), rgba(0, 0, 0, 0));
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #2E6FF3, #7B5CFA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.stepsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.step:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.stepNumber {
+  font-size: 5rem;
+  font-weight: 800;
+  color: rgba(46, 111, 243, 0.15);
+  min-width: 6rem;
+  text-align: center;
+}
+
+.stepContent {
+  flex: 1;
+}
+
+.stepTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.stepDescription {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.stepImageContainer {
+  flex: 1;
+  max-width: 300px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stepImage {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  background: rgba(123, 92, 250, 0.1);
+  aspect-ratio: 16/9;
+}
+
+@media (max-width: 768px) {
+  .step, .step:nth-child(even) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .stepNumber {
+    font-size: this;
+    min-width: auto;
+  }
+  
+  .stepImageContainer {
+    max-width: 100%;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}

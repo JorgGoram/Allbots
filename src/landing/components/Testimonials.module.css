@@ -1,0 +1,136 @@
+
+.testimonialsSection {
+  padding: 6rem 0;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #2E6FF3, #7B5CFA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.testimonialsContainer {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.testimonialsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonialCard {
+  min-width: 300px;
+  flex: 0 0 calc(33.333% - 2rem);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.testimonialCard:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(123, 92, 250, 0.3);
+  transform: translateY(-5px);
+}
+
+.quoteMark {
+  font-size: 3rem;
+  line-height: 1;
+  font-weight: 700;
+  color: rgba(123, 92, 250, 0.3);
+  margin-bottom: 1rem;
+}
+
+.testimonialText {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authorAvatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(to right, #2E6FF3, #7B5CFA);
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  font-weight: 600;
+  color: white;
+}
+
+.authorTitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.navigation {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.navDot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.navDot.active {
+  background: var(--primary-color);
+  transform: scale(1.2);
+}
+
+@media (max-width: 1024px) {
+  .testimonialCard {
+    flex: 0 0 calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .testimonialCard {
+    flex: 0 0 calc(100% - 2rem);
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}

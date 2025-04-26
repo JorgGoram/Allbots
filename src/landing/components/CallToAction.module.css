@@ -1,0 +1,112 @@
+
+.ctaSection {
+  padding: 6rem 0;
+  background: radial-gradient(circle at center, rgba(46, 111, 243, 0.15) 0%, rgba(123, 92, 250, 0.1) 30%, transparent 70%);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaContainer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(to right, #2E6FF3, #7B5CFA, #00F7FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.primaryButton {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(to right, #2E6FF3, #7B5CFA);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.primaryButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(46, 111, 243, 0.3);
+}
+
+.secondaryButton {
+  padding: 1rem 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.backgroundElement1 {
+  position: absolute;
+  top: -20%;
+  left: -10%;
+  width: 40%;
+  height: 40%;
+  background: rgba(46, 111, 243, 0.1);
+  filter: blur(60px);
+  border-radius: 50%;
+}
+
+.backgroundElement2 {
+  position: absolute;
+  bottom: -20%;
+  right: -10%;
+  width: 40%;
+  height: 40%;
+  background: rgba(123, 92, 250, 0.1);
+  filter: blur(60px);
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .ctaContainer {
+    padding: 2rem 1.5rem;
+  }
+  
+  .title {
+    font-size: 2.25rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .ctaButtons {
+    flex-direction: column;
+  }
+}

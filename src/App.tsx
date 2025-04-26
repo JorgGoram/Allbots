@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import SystemOptimization from './pages/SystemOptimization';
 import ChatbotCenter from './pages/ChatbotCenter';
 import DataVisualizationDashboard from './pages/DataVisualizationDashboard';
+import LandingPage from './pages/LandingPage'; // Added import for LandingPage
 
 function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ function App() {
           <div className="absolute -bottom-[40%] -left-[25%] w-[80%] h-[80%] bg-white/5 rounded-full blur-[128px] opacity-20" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/5 rounded-full blur-[150px] opacity-10" />
         </div>
-        
+
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -40,22 +41,23 @@ function App() {
         </AnimatePresence>
 
         <Header />
-        
+
         <main className="pt-20 md:pt-24 lg:ml-64 p-4 md:p-6 lg:p-8 xl:p-10 relative">
           <div className="max-w-[1800px] mx-auto">
             <Routes>
               {/* Home Command Center */}
               <Route path="/" element={<Dashboard />} />
-              
+              <Route path="/landing" element={<LandingPage />} /> {/* Added route for LandingPage */}
+
               {/* Data Visualization */}
               <Route path="/analytics" element={<DataVisualizationDashboard />} />
-              
+
               {/* System Optimization */}
               <Route path="/system/*" element={<SystemOptimization />} />
 
               {/* Chatbot Center */}
               <Route path="/chatbots/*" element={<ChatbotCenter />} />
-              
+
               {/* Redirect unknown routes to dashboard */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>

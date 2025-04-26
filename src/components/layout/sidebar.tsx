@@ -12,7 +12,8 @@ import {
   ChevronRight,
   HelpCircle,
   MessageSquare,
-  BarChart2
+  BarChart2,
+  Globe // Added Globe icon
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -25,6 +26,7 @@ const menuItems = [
     section: 'Core',
     items: [
       { icon: Home, label: 'Dashboard', path: '/' },
+      { icon: Globe, label: 'Landing Page', path: '/landing' }, // Added Landing Page item
       { icon: BarChart2, label: 'Analytics', path: '/analytics' },
       { icon: Bot, label: 'Chatbots', path: '/chatbots' },
       { icon: Activity, label: 'Performance', path: '/system' },
