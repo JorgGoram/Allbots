@@ -12,8 +12,18 @@ const cssVariables = {
   '--accent-color-rgb': '46, 111, 243',
   '--accent-secondary': '#7B5CFA',
   '--accent-secondary-rgb': '123, 92, 250',
+  '--accent-tertiary': '#00F7FF',
+  '--accent-tertiary-rgb': '0, 247, 255',
   '--dark-bg': '#050510',
+  '--dark-bg-lighter': '#090919',
   '--text-primary': '#FFFFFF',
+  '--text-secondary': 'rgba(255, 255, 255, 0.7)',
+  '--surface-card': 'rgba(255, 255, 255, 0.03)',
+  '--surface-card-hover': 'rgba(46, 111, 243, 0.08)',
+  '--border-light': 'rgba(255, 255, 255, 0.05)',
+  '--border-accent': 'rgba(46, 111, 243, 0.2)',
+  '--glow-accent': '0 0 20px rgba(46, 111, 243, 0.3)',
+  '--glow-blue': '0 0 15px rgba(0, 247, 255, 0.5)',
 } as React.CSSProperties;
 
 const LandingPage: React.FC = () => {
