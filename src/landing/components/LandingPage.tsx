@@ -49,69 +49,6 @@ const LandingPage: React.FC = () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();
-
-        const href = this.getAttribute('href');
-        if (href) {
-          const targetElement = document.querySelector(href);
-          if (targetElement) {
-            targetElement.scrollIntoView({
-              behavior: 'smooth'
-            });
-          }
-        }
-      });
-    });
-
-    // Cleanup function to restore original body style and remove event listeners
-    return () => {
-      document.body.style.backgroundColor = originalBackgroundColor;
-      document.body.style.overflow = originalOverflow;
-
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', function(e) {
-          e.preventDefault();
-        });
-      });
-    };
-  }, []);
-
-  return (
-    <div className="landing-page" style={cssVariables}>
-      <HeroSection />
-      <FeaturesGrid />
-      <HowItWorks />
-      <CallToAction />
-      <Footer />
-    </div>
-  );
-};
-
-export default LandingPage;
-
-const LandingPage: React.FC = () => {
-  // Use effect to set document title and body style
-  useEffect(() => {
-    // Set document title
-    document.title = 'AllBots.io - AI-Powered Process Automation';
-
-    // Apply CSS variables to document root
-    const rootElement = document.documentElement;
-    Object.entries(cssVariables).forEach(([key, value]) => {
-      rootElement.style.setProperty(key, value as string);
-    });
-
-    // Save original body style
-    const originalBackgroundColor = document.body.style.backgroundColor;
-    const originalOverflow = document.body.style.overflow;
-
-    // Set body styles for landing page
-    document.body.style.backgroundColor = '#050510';
-    document.body.style.overflow = 'auto';
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
         const href = this.getAttribute('href');
         if (href) {
           const targetElement = document.querySelector(href);

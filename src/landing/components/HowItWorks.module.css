@@ -72,24 +72,32 @@
 }
 
 .sectionTitle {
-  font-size: clamp(2.2rem, 5vw, 3rem);
-  font-weight: 800;
-  line-height: 1.2;
-  margin: 0 0 1.5rem;
-  text-align: center;
-  width: 100%;
-  display: inline-block;
-}
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    line-height: 1.25;
+    margin: 0 0 1.5rem;
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
 
 .titleHighlight {
-  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  display: inline;
-  white-space: nowrap;
-}
+    background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    display: inline;
+  }
+
+  @media (min-width: 768px) {
+    .titleHighlight {
+      white-space: nowrap;
+    }
+  }
 
 .sectionDescription {
   font-size: clamp(1.1rem, 2vw, 1.25rem);
@@ -525,7 +533,7 @@
   .clientSuccess {
     padding: 2.5rem;
   }
-  
+
   .container {
     padding: 0 1.5rem;
   }
@@ -718,50 +726,6 @@
   }
   .ctaButton {
     width: 100%;
-
-/* Fix overflow issues */
-.timelineContainer {
-  overflow-x: hidden;
-}
-
-.timelineNav {
-  overflow-x: auto;
-  scrollbar-width: thin;
-  -ms-overflow-style: none;
-}
-
-.timelineNav::-webkit-scrollbar {
-  height: 4px;
-}
-
-.timelineNav::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-}
-
-/* Fix text wrapping on small screens */
-.stepPhase, .stepTitle {
-  white-space: normal;
-  word-wrap: break-word;
-}
-
-/* Improve tap targets on mobile */
-@media (max-width: 480px) {
-  .detailsList li {
-    margin-bottom: 1rem;
-    padding: 0.25rem 0;
-  }
-  
-  .timelineStep {
-    touch-action: manipulation;
-  }
-  
-  .ctaButton {
-    padding: 1.2rem;
-    margin-top: 1rem;
-  }
-}
-
     padding: 1rem 1.5rem;
     max-width: 90%;
   }
@@ -888,4 +852,47 @@
 
 .milestoneCard:hover .milestoneContent {
   transform: translateY(-5px);
+}
+
+/* Fix overflow issues */
+.timelineContainer {
+  overflow-x: hidden;
+}
+
+.timelineNav {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+.timelineNav::-webkit-scrollbar {
+  height: 4px;
+}
+
+.timelineNav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Fix text wrapping on small screens */
+.stepPhase, .stepTitle {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Improve tap targets on mobile */
+@media (max-width: 480px) {
+  .detailsList li {
+    margin-bottom: 1rem;
+    padding: 0.25rem 0;
+  }
+
+  .timelineStep {
+    touch-action: manipulation;
+  }
+
+  .ctaButton {
+    padding: 1.2rem;
+    margin-top: 1rem;
+  }
 }

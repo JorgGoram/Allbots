@@ -214,8 +214,8 @@ const HowItWorks: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Our structured implementation approach ensures a smooth transition to 
-            automated operations with minimal disruption to your business.
+            Our structured implementation approach ensures a smooth transition 
+            to automated operations with minimal disruption to your business.
           </motion.p>
         </motion.div>
         
