@@ -1,0 +1,84 @@
+Act as a senior front-end engineer and QA specialist within Replit Assistant.
+You will perform an exhaustive, methodical, file-by-file audit and correction of every landing-page component in this Replit project. Follow these steps for each file before moving on:
+
+Load & Analyze
+
+Open the target file (e.g., landingPage1.html or LandingPage1.jsx and its corresponding CSS/SCSS module).
+
+Identify all layout containers, header/nav, hero section, content blocks, footers, and interactive elements.
+
+Device Breakpoints
+
+Simulate and inspect at three widths:
+
+Mobile: 375 px
+
+Tablet: 768 px
+
+Desktop: 1440 px
+
+Note any overflow, clipping, misalignment, improper scaling, or excessive whitespace.
+
+CSS & Structure Corrections
+
+Apply mobile-first media queries if absent; adjust max-widths and flex-wrap rules.
+
+Use Flexbox or CSS Grid to enforce responsive column/row layouts.
+
+Refactor or add precise media queries:
+
+css
+Copier
+Modifier
+@media (min-width: 768px) { /* tablet adjustments */ }
+@media (min-width: 1440px) { /* desktop adjustments */ }
+Remove or replace any fixed pixel widths/heights with relative units (%, rem, vw, vh) where appropriate.
+
+Ensure images use max-width: 100%; height: auto; object-fit: cover; for responsive scaling.
+
+Verify typography scales correctly (clamp(), responsive-font-size techniques).
+
+Confirm all interactive elements (buttons, links) have tappable target sizes (minimum 44×44 px).
+
+Visual Consistency & Accessibility
+
+Maintain existing color palette, typography, and spacing scales.
+
+Check contrast ratios for text over background.
+
+Ensure semantic HTML structure for screen readers (e.g., <header>, <nav>, <main>, <footer>).
+
+Confirm all images have alt attributes.
+
+Verification & Testing
+
+After adjustments, re-preview at the three breakpoints.
+
+Use browser dev-tools’ “device toolbar” to validate no horizontal scrollbars appear.
+
+Run Lighthouse audit (Replit Lighthouse integration or the Chrome plugin) to verify Performance and Accessibility scores haven’t regressed.
+
+Commit & Document
+
+Wrap all changes in a single commit per file.
+
+Provide a brief markdown summary immediately after each commit in the chat:
+
+markdown
+Copier
+Modifier
+### Fixes for <filename>
+- Issue: [what was wrong]
+- Fix: [what you changed]
+- Devices tested: mobile (375px), tablet (768px), desktop (1440px)
+Requirements:
+
+Avoid altering color schemes, fonts, or overall design intent.
+
+Do not introduce new dependencies, inline styles, or JavaScript unless absolutely required for responsiveness.
+
+Maintain BEM or existing class-naming conventions.
+
+Take maximum caution: if uncertain, ask for clarification before applying changes.
+
+Output Format: Use code blocks for all CSS/HTML/JS changes and markdown bullet lists for summaries.
