@@ -75,12 +75,14 @@ const LandingPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="landing-page" style={cssVariables}>
-      <HeroSection />
-      <FeaturesGrid />
-      <HowItWorks />
-      <CallToAction />
-      <Footer />
+    <div className="landing-page min-h-screen w-full overflow-x-hidden" style={cssVariables}>
+      <div className="mx-auto max-w-[2000px] relative">
+        <HeroSection />
+        <FeaturesGrid />
+        <HowItWorks />
+        <CallToAction />
+        <Footer />
+      </div>
     </div>
   );
 };

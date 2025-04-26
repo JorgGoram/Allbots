@@ -621,67 +621,48 @@
 
 @media (max-width: 768px) {
   .howItWorksSection {
-    padding: 80px 0;
+    padding: 60px 0;
   }
+
   .sectionTitle {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
     line-height: 1.3;
+    padding: 0 1rem;
   }
-  .sectionDescription {
-    font-size: 1.1rem;
-    padding: 0 0.5rem;
-  }
-  .timelineNav {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    margin: 0 -1rem 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-  }
-  .timelineNav::-webkit-scrollbar {
-    height: 4px;
-  }
-  .timelineNav::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-  }
-  .timelineStep {
-    min-width: 220px;
-    margin: 0 0.5rem;
-    padding: 1rem;
-    scroll-snap-align: start;
-    flex-shrink: 0;
-  }
-  .timelineStep:first-child {
-    margin-left: 0;
-  }
-  .timelineStep:last-child {
-    margin-right: 0;
-    padding-right: 1rem;
-  }
-  .timelineProgress {
-    margin: 0 0 1.5rem;
-  }
-  .stepTitleLarge {
-    font-size: 1.8rem;
-  }
-  .successMetrics {
-    grid-template-columns: 1fr;
-  }
-  .milestone {
-    margin-bottom: 4rem;
-  }
+
   .container {
     padding: 0 1rem;
   }
-  .sectionHeader {
+
+  .timelineNav {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0;
     padding: 0 1rem;
   }
-  .timelineContainer {
-    padding: 0;
+
+  .timelineStep {
+    width: 100%;
+    margin: 0;
+  }
+
+  .stepContentWrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stepDetails {
+    text-align: left;
+  }
+
+  .successMetrics {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .clientSuccess {
+    margin: 1rem;
+    padding: 1.5rem;
   }
 }
 
