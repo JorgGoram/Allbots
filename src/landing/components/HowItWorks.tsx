@@ -221,7 +221,7 @@ const HowItWorks: React.FC = () => {
         
         <div className={styles.timelineContainer} ref={timelineRef}>
           {/* Interactive timeline navigation */}
-          <div className={styles.timelineNav}>
+          <div className={styles.timelineNav} role="tablist" aria-label="Implementation Timeline">
             {timelineSteps.map((step, index) => (
               <motion.div
                 key={index}
