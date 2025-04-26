@@ -1,23 +1,100 @@
 // Helper utilities for the landing page
 
 /**
- * Formats a number with comma separators
- * @param num Number to format
- * @returns Formatted string
+ * Format a number with commas (e.g., 1000 -> 1,000)
  */
 export const formatNumber = (num: number): string => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
 /**
- * Truncates text to specified length and adds ellipsis if needed
- * @param text Text to truncate
- * @param maxLength Maximum length before truncation
- * @returns Truncated text
+ * Truncate a string if it exceeds maxLength
  */
-export const truncateText = (text: string, maxLength: number): string => {
-  if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + '...';
+export const truncateString = (str: string, maxLength: number): string => {
+  if (str.length <= maxLength) return str;
+  return str.slice(0, maxLength) + '...';
+};
+
+/**
+ * Convert a hex color to rgba
+ */
+export const hexToRgba = (hex: string, alpha: number = 1): string => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+/**
+ * Check if a device is mobile/tablet based on screen width
+ */
+export const isMobile = (): boolean => {
+  return window.innerWidth <= 768;
+};
+
+export const isTablet = (): boolean => {
+  return window.innerWidth <= 1024 && window.innerWidth > 768;
+};
+
+/**
+ * Generate random number between min and max (inclusive)
+ */
+export const randomNumber = (min: number, max: number): number => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+/**
+ * Debounce a function
+ */
+export const debounce = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+): ((...args: Parameters<T>) => void) => {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+
+  return (...args: Parameters<T>) => {
+    if (timeout) clearTimeout(timeout);
+    timeout = setTimeout(() => func(...args), wait);
+  };
+};
+
+/**
+ * Throttle a function
+ */
+export const throttle = <T extends (...args: any[]) => any>(
+  func: T,
+  limit: number
+): ((...args: Parameters<T>) => void) => {
+  let inThrottle: boolean = false;
+
+  return (...args: Parameters<T>) => {
+    if (!inThrottle) {
+      func(...args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+};
+
+/**
+ * Get viewport dimensions
+ */
+export const getViewportDimensions = (): { width: number; height: number } => {
+  return {
+    width: window.innerWidth,
+    height: window.innerHeight
+  };
+};
+
+/**
+ * Split array into chunks of specified size
+ */
+export const chunkArray = <T>(array: T[], size: number): T[][] => {
+  const result: T[][] = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
 };
 
 /**
@@ -36,61 +113,14 @@ export const isTabletViewport = (): boolean => {
   return window.innerWidth >= 768 && window.innerWidth < 1024;
 };
 
-/**
- * Creates a debounced function that delays invoking the provided function
- * @param func Function to debounce
- * @param wait Wait time in milliseconds
- * @returns Debounced function
- */
-export const debounce = <T extends (...args: any[]) => any>(
-  func: T,
-  wait: number
-): ((...args: Parameters<T>) => void) => {
-  let timeout: ReturnType<typeof setTimeout> | null = null;
-
-  return function(this: any, ...args: Parameters<T>) {
-    const later = () => {
-      timeout = null;
-      func.apply(this, args);
-    };
-
-    if (timeout !== null) {
-      clearTimeout(timeout);
-    }
-    timeout = setTimeout(later, wait);
-  };
-};
-
-/**
- * Throttles a function to execute at most once in the specified time period
- * @param func Function to throttle
- * @param limit Time limit in milliseconds
- * @returns Throttled function
- */
-export const throttle = <T extends (...args: any[]) => any>(
-  func: T,
-  limit: number
-): ((...args: Parameters<T>) => void) => {
-  let inThrottle: boolean = false;
-
-  return function(this: any, ...args: Parameters<T>) {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => {
-        inThrottle = false;
-      }, limit);
-    }
-  };
-};
 
 /**
  * Generates a random ID string
  * @returns Random ID string
  */
 export const generateId = (): string => {
-  return Math.random().toString(36).substring(2, 15) + 
-         Math.random().toString(36).substring(2, 15);
+  return Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15);
 };
 
 /**
@@ -98,13 +128,15 @@ export const generateId = (): string => {
  * @param hex Hex color string (with or without #)
  * @returns Object with r, g, b values
  */
-export const hexToRgb = (hex: string): { r: number, g: number, b: number } | null => {
+export const hexToRgb = (hex: string): { r: number; g: number; b: number } | null => {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result ? {
-    r: parseInt(result[1], 16),
-    g: parseInt(result[2], 16),
-    b: parseInt(result[3], 16)
-  } : null;
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
 };
 
 /**
@@ -115,10 +147,15 @@ export const hexToRgb = (hex: string): { r: number, g: number, b: number } | nul
  * @returns Hex color string with #
  */
 export const rgbToHex = (r: number, g: number, b: number): string => {
-  return '#' + [r, g, b].map(x => {
-    const hex = x.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-  }).join('');
+  return (
+    '#' +
+    [r, g, b]
+      .map((x) => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? '0' + hex : hex;
+      })
+      .join('')
+  );
 };
 
 /**

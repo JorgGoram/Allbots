@@ -1,8 +1,7 @@
-
 .howItWorksSection {
   position: relative;
   padding: 120px 0;
-  background-color: var(--dark-bg);
+  background: linear-gradient(135deg, var(--dark-bg), #080818, #0d0d1f);
   color: var(--text-primary);
   overflow: hidden;
 }
@@ -496,13 +495,22 @@
   .timelineContent {
     padding: 2.5rem;
   }
-  
+
   .stepContentWrapper {
     gap: 2rem;
   }
-  
+
   .clientSuccess {
     padding: 2.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .timelineContainer {
+    padding: 0 2rem;
+  }
+  .sectionTitle {
+    font-size: 2.5rem;
   }
 }
 
@@ -510,63 +518,70 @@
   .howItWorksSection {
     padding: 90px 0;
   }
-  
   .timelineStep {
     padding: 1.2rem 0.8rem;
   }
-  
   .stepNumberContainer {
     width: 36px;
     height: 36px;
   }
-  
   .stepNumber {
     width: 36px;
     height: 36px;
     font-size: 1rem;
   }
-  
   .activeIndicator {
     width: 44px;
     height: 44px;
   }
-  
   .stepTitle {
     font-size: 1rem;
   }
-  
   .stepContentWrapper {
     flex-direction: column;
     gap: 2rem;
     align-items: center;
     text-align: center;
   }
-  
   .stepHeader {
     justify-content: center;
   }
-  
   .stepDetails {
     grid-template-columns: 1fr;
     text-align: left;
   }
-  
   .timelineContent {
     padding: 2rem;
     min-height: 0;
   }
-  
   .clientSuccess {
     padding: 2rem;
   }
-  
   .clientSuccessHeader {
     flex-direction: column;
     text-align: center;
   }
+  .timelinePath {
+    left: 2rem;
+  }
+  .milestone {
+    padding-left: 5rem;
+  }
+  .milestoneDot {
+    left: 2rem;
+  }
 }
 
 @media (max-width: 768px) {
+  .howItWorksSection {
+    padding: 80px 0;
+  }
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+  .sectionDescription {
+    font-size: 1.1rem;
+  }
   .timelineNav {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -577,108 +592,121 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
   }
-  
   .timelineNav::-webkit-scrollbar {
     height: 4px;
   }
-  
   .timelineNav::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.2);
     border-radius: 2px;
   }
-  
   .timelineStep {
     min-width: 220px;
     margin: 0 0.5rem;
     padding: 1rem;
     scroll-snap-align: start;
   }
-  
   .timelineStep:first-child {
     margin-left: 0;
   }
-  
   .timelineProgress {
     margin: 0 0 1.5rem;
   }
-  
   .stepTitleLarge {
     font-size: 1.8rem;
   }
-  
   .successMetrics {
     grid-template-columns: 1fr;
   }
+  .milestone {
+    margin-bottom: 4rem;
+  }
+
 }
 
 @media (max-width: 640px) {
   .howItWorksSection {
     padding: 70px 0;
   }
-  
   .timelineContent {
     padding: 1.5rem;
     border-radius: 16px;
   }
-  
   .stepIconContainer {
     width: 80px;
     height: 80px;
     border-radius: 16px;
   }
-  
   .stepIcon {
     width: 35px;
     height: 35px;
   }
-  
   .stepTitleLarge {
     font-size: 1.6rem;
   }
-  
   .stepDescription {
     font-size: 1rem;
   }
-  
   .clientSuccess {
     padding: 1.5rem;
     border-radius: 16px;
   }
-  
   .clientSuccessIcon {
     width: 60px;
     height: 60px;
   }
-  
   .clientSuccessTitle {
     font-size: 1.6rem;
   }
-  
   .metricValue {
     font-size: 1.8rem;
   }
-  
   .ctaButton {
     width: 100%;
     padding: 1rem 1.5rem;
   }
-  
   .sectionTitle {
     font-size: 2rem;
   }
-  
   .titleHighlight {
     display: inline;
     white-space: normal;
   }
-  
   .stepDetails {
     margin-top: 1rem;
   }
-  
   .detailsTitle {
     font-size: 1.1rem;
     margin-bottom: 1rem;
+  }
+  .timelinePath {
+    left: 1rem;
+  }
+  .milestone {
+    padding-left: 3.5rem;
+  }
+  .milestoneDot {
+    left: 1rem;
+    width: 30px;
+    height: 30px;
+  }
+  .milestoneDotInner {
+    width: 16px;
+    height: 16px;
+  }
+  .sectionHeader {
+    margin-bottom: 3rem;
+  }
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  .milestoneCard {
+    padding: 1.5rem;
+  }
+  .milestoneNumber {
+    font-size: 1.5rem;
+  }
+  .milestoneTitle {
+    font-size: 1.2rem;
   }
 }
 
@@ -686,37 +714,20 @@
   .howItWorksSection {
     padding: 60px 0;
   }
-  
+  .sectionTag {
+    font-size: 0.7rem;
+  }
   .sectionTitle {
     font-size: 1.8rem;
   }
-  
-  .timelineStep {
-    min-width: 180px;
-    padding: 0.8rem;
+  .sectionDescription {
+    font-size: 1rem;
   }
-  
-  .stepTitle {
-    font-size: 0.9rem;
+  .milestone {
+    padding-left: 3rem;
   }
-  
-  .stepPhase {
-    font-size: 0.8rem;
-  }
-  
-  .stepTitleLarge {
-    font-size: 1.4rem;
-  }
-  
-  .stepContentWrapper {
-    gap: 1.5rem;
-  }
-  
-  .ctaTitle {
-    font-size: 1.5rem;
-  }
-  
-  .metric {
-    padding: 1rem;
-  }
+}
+
+.milestoneCard:hover .milestoneContent {
+  transform: translateY(-5px);
 }

@@ -5,6 +5,9 @@ import FeaturesGrid from './FeaturesGrid';
 import HowItWorks from './HowItWorks';
 import CallToAction from './CallToAction';
 import Footer from './Footer';
+import HowItWorks from './HowItWorks';
+import CallToAction from './CallToAction';
+import Footer from './Footer';
 
 // Define CSS variables for the theme
 const cssVariables = {
@@ -25,6 +28,53 @@ const cssVariables = {
   '--glow-accent': '0 0 20px rgba(46, 111, 243, 0.3)',
   '--glow-blue': '0 0 15px rgba(0, 247, 255, 0.5)',
 } as React.CSSProperties;
+
+const LandingPage: React.FC = () => {
+  // Apply CSS variables to document root on component mount
+  useEffect(() => {
+    const rootElement = document.documentElement;
+    Object.entries(cssVariables).forEach(([key, value]) => {
+      rootElement.style.setProperty(key, value as string);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        if (href) {
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth'
+            });
+          }
+        }
+      });
+    });
+
+    // Clean up event listeners on unmount
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', function(e) {
+          e.preventDefault();
+        });
+      });
+    };
+  }, []);
+
+  return (
+    <div className="landing-page">
+      <HeroSection />
+      <FeaturesGrid />
+      <HowItWorks />
+      <CallToAction />
+      <Footer />
+    </div>
+  );
+};
+
+export default LandingPage;
 
 const LandingPage: React.FC = () => {
   // Use effect to set document title and body style
