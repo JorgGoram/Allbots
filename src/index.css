@@ -15,7 +15,7 @@
   main, .main-content {
     padding-top: var(--header-height);
   }
-
+    
     /* Glow colors for 3D cards */
     --white-glow: rgba(255, 255, 255, 0.3);
     --accent-blue-glow: rgba(46, 111, 243, 0.3);
@@ -46,16 +46,17 @@
   html {
     scroll-behavior: smooth;
   }
+}
 
 @layer utilities {
   .glass-effect {
     @apply bg-white/[0.03] backdrop-blur-md border border-white/[0.08];
   }
-
+  
   .glass-card {
     @apply relative rounded-xl border border-white/[0.05] bg-black/20 p-6;
   }
-
+  
   .glow-effect {
     @apply relative;
     @apply after:absolute after:inset-0 after:rounded-xl after:bg-gradient-to-b after:from-white/20 after:to-transparent after:opacity-0 after:transition-opacity;
@@ -67,7 +68,7 @@
     @apply before:absolute before:inset-0 before:rounded-xl before:p-[1px] before:bg-gradient-to-r before:from-white/30 before:to-white/30 before:opacity-0;
     @apply hover:before:opacity-100 before:transition-opacity;
   }
-
+  
   .custom-scrollbar::-webkit-scrollbar {
     @apply w-1.5 h-1.5;
   }
