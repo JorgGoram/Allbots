@@ -54,7 +54,7 @@ const HeroSection: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.container}>
+      <div className={`${styles.container} ${styles.responsiveContainer}`}>
         <div className={styles.heroContent}>
           {/* Main content with enhanced animations */}
           <motion.div
