@@ -1,0 +1,38 @@
+Act as a world-class full-stack web developer, UX/UI designer, copywriter, marketer and behavior psychologist. Your task is to **revise and enhance** our AllBots.io landing page based on the attached assets:
+
+1. **Context & Attachments**  
+   - **Screenshot:** landing-page.png (full desktop “above the fold” view)  
+   - **Critique Document:** landing-critique.pdf (detailed analysis)  
+
+2. **Phase 1: Landing Page Improvement Plan**  
+   2.1. **Review**  
+       - Analyze current layout, copy, visuals, CTAs, and trust signals against best-practice UX, persuasion and accessibility principles.  
+       - Highlight 3–5 key areas for highest impact (e.g. headline specificity, CTA clarity, social proof).  
+   2.2. **Recommendations**  
+       - For each area, propose concrete changes:  
+         - **Copy:** precise headline/sub-headline rewrites, button microcopy.  
+         - **Design:** component reshuffling, color/contrast tweaks, imagery swaps.  
+         - **UX:** information scent improvements, streamlined user flow.  
+         - **Accessibility:** required WCAG checks and fixes.  
+   2.3. **Step-by-Step Plan**  
+       - Outline a numbered, granular sequence of tasks—wireframe adjustment, component refactor, copy replacement, style updates, QA and accessibility audit.  
+       - Specify which files you’ll edit (e.g. `src/landing/components/HeroSection.jsx`, `styles/HeroSection.module.css`).  
+
+3. **Phase 2: Database & Auth Strategy (after landing page is approved)**  
+   3.1. **Schema Design**  
+       - Define SQL tables: `users`, `sessions`, `profiles` (fields, types, relationships).  
+       - Outline indexes and constraints for performance and security.  
+   3.2. **Integration Plan**  
+       - Describe how to hook authentication into React (or chosen framework) and redirect to the existing dashboard.  
+       - List environment variables (e.g. `DB_URL`, `SESSION_SECRET`).  
+   3.3. **Step-by-Step Implementation**  
+       - Numbered list: create migration files, set up ORM or raw SQL client, add sign-in form component, protect routes, write unit/integration tests.  
+
+4. **Important Constraints**  
+   - **Do not** modify **any** existing dashboard code until I explicitly ask.  
+   - *When* I instruct you to edit the dashboard, you must first ask:  
+     > “Are you sure you want now to start editing the user dashboard?”  
+
+5. **Deliverable**  
+   - First, present **Phase 1** plan and recommendations in detail.  
+   - Await my approval before writing or changing any code.  
