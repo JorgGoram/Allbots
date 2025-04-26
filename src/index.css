@@ -8,7 +8,7 @@
   :root {
     --background: 0 0% 0%;
     --background-secondary: 0 0% 5%;
-
+    --header-height: 4rem; /* 64px for default, matches h-16 */
 
     /* Glow colors for 3D cards */
     --white-glow: rgba(255, 255, 255, 0.3);
@@ -117,7 +117,14 @@
   }
 }
 
+/* Layout adjustment for fixed header */
 main, .main-content {
     padding-top: var(--header-height);
-    margin-top: var(--header-height);
+    margin-top: 1rem; /* Add space between header and content */
   }
+
+@media (min-width: 768px) {
+  :root {
+    --header-height: 5rem; /* 80px for md screens, matches h-20 */
+  }
+}
