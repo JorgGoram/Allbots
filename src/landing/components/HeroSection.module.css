@@ -642,7 +642,17 @@
   }
 
   .titleLine {
+    white-space: normal;
+    overflow: visible;
     margin-bottom: 0.5rem;
+  }
+
+  .titleLineGradient {
+    display: inline-block;
+  }
+
+  .subtitle {
+    font-size: 1rem;
   }
 
   .benefitsList {
@@ -671,54 +681,6 @@
   .heroIllustration {
     height: 250px;
     margin-top: 2rem;
-  }
-}
-
-  .titleLine {
-    white-space: normal;
-    overflow: visible;
-  }
-
-  .titleLineGradient {
-    display: inline-block;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .benefitsList {
-    grid-template-columns: 1fr;
-  }
-
-  .primaryButton, .secondaryButton {
-    width: 100%;
-  }
-
-  .ctaContainer {
-    width: 100%;
-  }
-
-  .statsContainer {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .statValue {
-    font-size: 1.5rem;
-  }
-
-  .clientLogos {
-    gap: 1.5rem;
-  }
-
-  .logoPlaceholder {
-    width: 100px;
-    height: 35px;
-  }
-
-  .heroIllustration {
-    height: 280px;
   }
 
   .botIconContainer {
