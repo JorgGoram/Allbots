@@ -1,0 +1,48 @@
+### 3. File & Component Structure  
+3.1. Under `src/`, create `landing/` with subfolders:  
+   - `components/` (PascalCase React components)  
+   - `styles/` (SCSS or CSS Modules)  
+   - `assets/` (compressed images, SVG icons)  
+   - `utils/` (responsive mixins, breakpoint helpers) :contentReference[oaicite:6]{index=6}  
+3.2. Scaffold these components:  
+   - `Hero.jsx` + `Hero.module.scss`  
+   - `Features.jsx` + `Features.module.scss`  
+   - `Testimonials.jsx` + `Testimonials.module.scss`  
+   - `CallToAction.jsx` + `CallToAction.module.scss`  
+   - `Footer.jsx` + `Footer.module.scss`  
+3.3. Create `LandingPage.jsx` that imports and arranges these in visual order. :contentReference[oaicite:7]{index=7}  
+
+### 4. Design & Interaction  
+4.1. **Layout & Typography**:  
+   - Use CSS Grid/Flexbox for fluid layouts :contentReference[oaicite:8]{index=8}.  
+   - Implement responsive typography with `clamp()` for fluid scaling :contentReference[oaicite:9]{index=9}.  
+4.2. **Visual Style**:  
+   - Glassmorphic cards with subtle backdrop-filter :contentReference[oaicite:10]{index=10}.  
+   - Saturated gradients for primary CTAs :contentReference[oaicite:11]{index=11}.  
+   - Kinetic text animations on headlines (e.g., letter-by-letter fade-in) :contentReference[oaicite:12]{index=12}.  
+4.3. **Animations**:  
+   - Use GSAP or React Spring for GPU-accelerated micro-interactions :contentReference[oaicite:13]{index=13}.  
+   - Animate scroll-triggered reveals for each section.  
+
+### 5. Responsiveness & Accessibility  
+5.1. **Breakpoints**: mobile (<768px), tablet (768–1199px), desktop (≥1200px) :contentReference[oaicite:14]{index=14}.  
+5.2. **Mobile-first CSS**: layer up from smallest to largest devices :contentReference[oaicite:15]{index=15}.  
+5.3. **WCAG 2.1 AA**: ensure color contrast, keyboard focus states, ARIA labels, and semantic HTML :contentReference[oaicite:16]{index=16}.  
+
+### 6. Performance & Optimization  
+6.1. **Asset Loading**:  
+   - Lazy-load below-the-fold images/videos :contentReference[oaicite:17]{index=17}.  
+   - Preload critical fonts and SVG icons inline :contentReference[oaicite:18]{index=18}.  
+6.2. **Build Tools**:  
+   - Configure Vite for code splitting and tree-shaking :contentReference[oaicite:19]{index=19}.  
+   - Utilize HTTP/2 push where supported.  
+
+### 7. Quality Assurance & Testing  
+7.1. **Linters & Formatters**: ESLint (Airbnb) + Prettier pre-commit via Husky :contentReference[oaicite:20]{index=20}.  
+7.2. **Unit & Snapshot Tests**: Jest + React Testing Library for each component :contentReference[oaicite:21]{index=21}.  
+7.3. **Visual Regression**: Set up Percy or Chromatic for UI diffing :contentReference[oaicite:22]{index=22}.  
+7.4. **Lighthouse Audit**: Automate in CI to enforce >90 scores.  
+
+### 8. Delivery & Confirmation  
+- After completion, reply:  
+  > “Futuristic landing page scaffolded, responsive and performance-tuned, tests passing—ready for final review.”  

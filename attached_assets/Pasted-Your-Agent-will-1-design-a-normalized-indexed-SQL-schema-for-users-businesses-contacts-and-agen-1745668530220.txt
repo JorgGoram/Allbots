@@ -1,0 +1,106 @@
+Your Agent will (1) design a normalized, indexed SQL schema for users, businesses, contacts and agent settings; (2) scaffold migrations and ORM models; (3) build a React multi-step form that follows NN/g and UX Collective guidance; (4) enforce validation, security, and accessibility; and (5) integrate authentication and redirect to the existing dashboard.
+
+1. Agent Initialization & Plan Approval
+1.1. Present a detailed implementation plan covering schema, migrations, models, form steps, validation rules, and tech stack; await approval before writing code. 
+Support Microsoft
+
+1.2. Create an initial checkpoint in the Progress tab upon plan sign-off. 
+Microsoft Learn
+
+2. Database Schema Design
+2.1. Normalization & Tables
+users: id (PK), email UNIQUE, password_hash, created_at 
+Support Microsoft
+
+businesses: id (PK), user_id (FK→users.id), name, url, phone, industry_id (FK), specialty, timezone
+
+industries (lookup): id, name
+
+contacts: id (PK), business_id (FK→businesses.id), full_name, email, phone, role
+
+agent_profiles: id (PK), business_id (FK), agent_name, voice_type, brand_voice_style, personality_traits JSON, knowledge_sources JSON
+
+Ensure each fact stored once; avoid duplication via lookup tables (1NF–3NF) 
+Microsoft Learn
+.
+
+2.2. Indexes & Constraints
+Add unique index on users.email for fast lookups. 
+Microsoft Learn
+
+Index businesses.user_id, contacts.business_id for join performance.
+
+Enforce NOT NULL and CHECK constraints on required fields (e.g., phone format).
+
+2.3. Migrations & ORM
+Scaffold migration files under db/migrations/ using your chosen ORM (Sequelize, TypeORM, or Prisma).
+
+Generate model classes in src/db/models/.
+
+3. Multi-Step Form Implementation
+3.1. Folder Structure
+Under src/, create setup/ with subfolders:
+
+steps/ (each form step component)
+
+styles/ (form CSS modules)
+
+utils/ (validation schemas)
+
+3.2. Steps & Components
+Business Details (BusinessDetails.jsx)
+
+Point of Contact (ContactDetails.jsx)
+
+Identity & Personality (AgentBranding.jsx)
+
+Voice & Language (VoiceSettings.jsx)
+
+Knowledge Base (KnowledgeSources.jsx)
+
+Agent Configuration (AgentConfig.jsx)
+
+Follow a single-column layout and group related fields per NN/g: visually group labels above inputs; avoid side-by-side fields except for tightly related ones (City/State/Zip) 
+Nielsen Norman Group
+.
+
+3.3. Validation & Feedback
+Use Yup (or Zod) schemas in utils/validation.js to enforce: required fields, URL format, phone regex, email format.
+
+Provide inline, real-time validation messages.
+
+Implement “Next” button disabling until current step passes validation.
+
+3.4. UX Best Practices
+Minimize inputs on first step; clearly label optional vs. required 
+Nielsen Norman Group
+.
+
+Show progress indicator (e.g., “Step 2 of 6”) per UX Collective onboarding guidelines 
+UX Design
+.
+
+Offer “Back”/“Next” navigation, preserving state between steps.
+
+3.5. Accessibility
+Ensure keyboard navigation and ARIA roles for form regions.
+
+Use <label> tied to each <input> and include aria-invalid on errors.
+
+Verify color contrast and focus indicators per WCAG 2.1 AA 
+Nielsen Norman Group
+.
+
+4. Authentication & Integration
+4.1. Add a sign-in page that sets a secure HTTP-only cookie or JWT.
+4.2. After registration, insert user + business + related records in a single transaction.
+4.3. Redirect to /dashboard once complete.
+
+5. Testing, CI & Checkpoints
+Create unit tests for each validation schema in setup/tests/.
+
+Write integration tests simulating the full multi-step flow.
+
+Configure Husky hooks to run tests and lint on pre-commit.
+
+After each successful test suite, create a checkpoint to enable cost-efficient rollback.
