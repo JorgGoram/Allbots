@@ -1,92 +1,201 @@
 
 .onboardingContainer {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--dark-bg);
   padding: 2rem;
-  color: var(--text-primary);
 }
 
-.progressBar {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-  padding: 0 1rem;
-}
-
-.progressStep {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+.onboardingCard {
+  width: 100%;
+  max-width: 800px;
   background: var(--surface-card);
-  position: relative;
-}
-
-.progressStep.active {
-  background: var(--accent-color);
-}
-
-.onboardingForm {
-  max-width: 600px;
-  margin: 0 auto;
-  background: var(--surface-card);
-  padding: 2rem;
-  border-radius: 12px;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-light);
 }
 
-.navigationButtons {
+.progress {
   display: flex;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  padding: 0 1rem;
 }
 
-.navigationButtons button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s ease;
+.progress::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-light);
+  transform: translateY(-50%);
+  z-index: 0;
 }
 
-.navigationButtons button:first-child {
-  background: var(--surface-card-hover);
-  color: var(--text-primary);
+.progressStep {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 1;
 }
 
-.navigationButtons button:last-child {
+.progressDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border-light);
+  border: 2px solid var(--surface-card);
+  transition: all 0.3s ease;
+}
+
+.progressLabel {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  position: absolute;
+  top: 100%;
+  margin-top: 0.5rem;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.progressStep.active .progressDot {
   background: var(--accent-color);
-  color: white;
+  box-shadow: 0 0 10px var(--accent-color);
 }
 
-.formStep {
-  display: grid;
-  gap: 1rem;
+.progressStep.completed .progressDot {
+  background: var(--accent-secondary);
+}
+
+.stepWrapper {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stepHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.stepTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stepDescription {
+  color: var(--text-secondary);
+}
+
+.stepContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .formGroup {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
 .formGroup label {
-  font-size: 0.9rem;
   color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
-.formGroup input,
-.formGroup select,
-.formGroup textarea {
-  padding: 0.75rem;
-  border-radius: 6px;
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-light);
-  background: var(--dark-bg-lighter);
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px var(--accent-color-rgb, 0.1);
+}
+
+.stepActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.backButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  border-color: var(--accent-color);
   color: var(--text-primary);
 }
 
-.formGroup input:focus,
-.formGroup select:focus,
-.formGroup textarea:focus {
-  border-color: var(--accent-color);
-  outline: none;
+.nextButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nextButton:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--glow-accent);
+}
+
+.nextButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  color: #ff4444;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .onboardingCard {
+    padding: 1.5rem;
+  }
+
+  .progress {
+    display: none;
+  }
+
+  .stepTitle {
+    font-size: 1.5rem;
+  }
 }
