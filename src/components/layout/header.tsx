@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, Bell, User, Settings, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -26,7 +27,7 @@ const Header = () => {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-white/40" />
           </div>
         </div>
-        
+
         <div className="flex items-center space-x-2 md:space-x-4 lg:space-x-6">
           <motion.button 
             whileHover={{ scale: 1.05 }}
@@ -36,7 +37,7 @@ const Header = () => {
             <Bell className="h-5 w-5 md:h-6 md:w-6" />
             <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-white animate-pulse"></span>
           </motion.button>
-          
+
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -45,7 +46,7 @@ const Header = () => {
             <Plus className="h-5 w-5 md:h-6 md:w-6" />
             <span className="hidden xl:inline">New Agent</span>
           </motion.button>
-          
+
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -53,7 +54,7 @@ const Header = () => {
           >
             <Settings className="h-5 w-5 md:h-6 md:w-6" />
           </motion.button>
-          
+
           <div className="hidden lg:flex items-center space-x-3 pl-6 border-l border-white/[0.05]">
             <div className="h-10 w-10 rounded-xl bg-white/10 p-1.5 ring-2 ring-white/20">
               <User className="h-full w-full text-white" />
@@ -70,6 +71,7 @@ const Header = () => {
               <User className="h-full w-full text-white" />
             </div>
           </div>
+          <Link to="/signup" className="rounded-xl p-2.5 text-white/70 hover:bg-white/[0.05] hover:text-white transition-colors">Sign Up</Link>
         </div>
       </div>
     </motion.header>
