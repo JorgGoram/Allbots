@@ -1,10 +1,12 @@
+
 import React from 'react';
-import AppRouter from './routes';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes';
 
 function App() {
   return (
     <div className="app-container bg-background text-foreground">
-      <AppRouter />
+      <RouterProvider router={router} />
     </div>
   );
 }
