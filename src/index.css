@@ -46,6 +46,7 @@
   html {
     scroll-behavior: smooth;
   }
+}
 
 @layer utilities {
   .glass-effect {
