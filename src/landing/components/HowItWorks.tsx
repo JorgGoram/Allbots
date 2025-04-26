@@ -145,16 +145,19 @@ const HowItWorks: React.FC = () => {
     });
   }, [activeStep, stepContentControls]);
   
-  // Scroll active step into view on mobile
-  useEffect(() => {
-    if (stepRefs.current[activeStep]) {
-      stepRefs.current[activeStep]?.scrollIntoView({
+  // Only scroll into view when manually clicking
+  const handleStepClick = (index: number) => {
+    setActiveStep(index);
+    setIsPaused(true);
+    
+    // Only scroll on mobile devices when clicked
+    if (window.innerWidth <= 768) {
+      stepRefs.current[index]?.scrollIntoView({
         behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
+        block: 'nearest'
       });
     }
-  }, [activeStep]);
+  };
 
   // Improve mobile touch handling
   useEffect(() => {
@@ -227,10 +230,7 @@ const HowItWorks: React.FC = () => {
                 key={index}
                 ref={el => stepRefs.current[index] = el}
                 className={`${styles.timelineStep} ${activeStep === index ? styles.activeStep : ''}`}
-                onClick={() => {
-                  setActiveStep(index);
-                  setIsPaused(true);
-                }}
+                onClick={() => handleStepClick(index)}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
                 whileHover={{ scale: 1.05, y: -5 }}
