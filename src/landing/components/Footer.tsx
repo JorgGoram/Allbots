@@ -1,75 +1,229 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { 
+  Mail, 
+  Phone, 
+  MessageSquare, 
+  Twitter, 
+  Linkedin, 
+  Facebook, 
+  Instagram, 
+  Youtube,
+  Bot,
+  ArrowRight
+} from 'lucide-react';
 import styles from './Footer.module.css';
 
 const Footer: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+  
+  // Quick links for footer navigation
+  const quickLinks = [
+    { name: 'Home', href: '#' },
+    { name: 'Features', href: '#features' },
+    { name: 'Implementation', href: '#implementation-timeline' },
+    { name: 'Pricing', href: '#pricing' },
+    { name: 'About Us', href: '#about' },
+    { name: 'Blog', href: '#blog' },
+    { name: 'Contact', href: '#contact' },
+  ];
+  
+  // Services links
+  const servicesLinks = [
+    { name: 'AI Strategy & Planning', href: '#services-strategy' },
+    { name: 'AI Voice Development', href: '#services-voice' },
+    { name: 'Process Automation', href: '#services-automation' },
+    { name: 'CRM/ERP Integration', href: '#services-integration' },
+    { name: 'Custom AI Solutions', href: '#services-custom' },
+    { name: 'Training & Support', href: '#services-training' },
+  ];
+  
+  // Industry solutions
+  const industriesLinks = [
+    { name: 'Healthcare', href: '#industry-healthcare' },
+    { name: 'Finance', href: '#industry-finance' },
+    { name: 'Retail', href: '#industry-retail' },
+    { name: 'Manufacturing', href: '#industry-manufacturing' },
+    { name: 'Telecommunications', href: '#industry-telecom' },
+    { name: 'Education', href: '#industry-education' },
+  ];
+  
+  // Social media links
+  const socialLinks = [
+    { icon: <Twitter size={20} />, href: '#' },
+    { icon: <Linkedin size={20} />, href: '#' },
+    { icon: <Facebook size={20} />, href: '#' },
+    { icon: <Instagram size={20} />, href: '#' },
+    { icon: <Youtube size={20} />, href: '#' },
+  ];
+  
+  // Contact information
+  const contactInfo = [
+    { 
+      icon: <Mail size={18} />, 
+      label: 'Email', 
+      value: 'contact@allbots.io',
+      href: 'mailto:contact@allbots.io'
+    },
+    { 
+      icon: <Phone size={18} />, 
+      label: 'Phone', 
+      value: '+1 (888) 123-4567',
+      href: 'tel:+18881234567'
+    },
+    { 
+      icon: <MessageSquare size={18} />, 
+      label: 'Live Chat', 
+      value: 'Start a conversation',
+      href: '#chat'
+    },
+  ];
+  
+  // Awards and certifications
+  const certifications = [
+    'ISO 27001 Certified',
+    'SOC 2 Compliant',
+    'GDPR Compliant',
+    'HIPAA Compliant',
+    'AI Ethics Framework'
+  ];
+
   return (
     <footer className={styles.footer}>
-      <div className="landing-container">
-        <div className={styles.footerContainer}>
-          <div>
-            <div className={styles.footerLogo}>AllBots.io</div>
-            <p className={styles.footerAbout}>
-              Creating intelligent AI chatbots for businesses of all sizes. Enhance customer experience, reduce costs, and drive growth with conversational AI.
+      <div className={styles.container}>
+        <div className={styles.footerTop}>
+          <div className={styles.footerLogoSection}>
+            <div className={styles.logo}>
+              <Bot className={styles.logoIcon} />
+              <span className={styles.logoText}>AllBots.io</span>
+            </div>
+            
+            <p className={styles.companyDescription}>
+              Transforming businesses through AI-powered process automation. 
+              We help organizations streamline operations, reduce costs, and 
+              deliver exceptional experiences.
             </p>
-            <div className={styles.socialLinks}>
-              <a href="#" className={styles.socialLink}><Facebook size={18} /></a>
-              <a href="#" className={styles.socialLink}><Twitter size={18} /></a>
-              <a href="#" className={styles.socialLink}><Instagram size={18} /></a>
-              <a href="#" className={styles.socialLink}><Linkedin size={18} /></a>
+            
+            <div className={styles.newsletter}>
+              <h4 className={styles.newsletterTitle}>Stay Updated</h4>
+              <p className={styles.newsletterSubtitle}>
+                Subscribe to our newsletter for AI automation insights
+              </p>
+              
+              <form className={styles.subscribeForm}>
+                <input 
+                  type="email" 
+                  placeholder="Your email address" 
+                  className={styles.emailInput} 
+                  required 
+                />
+                <motion.button 
+                  type="submit" 
+                  className={styles.subscribeButton}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ArrowRight size={18} />
+                </motion.button>
+              </form>
             </div>
           </div>
           
-          <div>
-            <h4 className={styles.columnTitle}>Products</h4>
-            <ul className={styles.footerLinks}>
-              <li className={styles.footerLink}><a href="#">Website Chatbots</a></li>
-              <li className={styles.footerLink}><a href="#">WhatsApp Bots</a></li>
-              <li className={styles.footerLink}><a href="#">Facebook Messenger</a></li>
-              <li className={styles.footerLink}><a href="#">Custom Solutions</a></li>
-              <li className={styles.footerLink}><a href="#">Pricing</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className={styles.columnTitle}>Resources</h4>
-            <ul className={styles.footerLinks}>
-              <li className={styles.footerLink}><a href="#">Documentation</a></li>
-              <li className={styles.footerLink}><a href="#">API Reference</a></li>
-              <li className={styles.footerLink}><a href="#">Blog</a></li>
-              <li className={styles.footerLink}><a href="#">Case Studies</a></li>
-              <li className={styles.footerLink}><a href="#">Help Center</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className={styles.columnTitle}>Contact</h4>
-            <div className={styles.contactInfo}>
-              <Mail size={16} />
-              <span>contact@allbots.io</span>
+          <div className={styles.footerLinks}>
+            <div className={styles.linkColumn}>
+              <h4 className={styles.columnTitle}>Quick Links</h4>
+              <ul className={styles.linksList}>
+                {quickLinks.map((link, index) => (
+                  <motion.li 
+                    key={index}
+                    whileHover={{ x: 5 }}
+                  >
+                    <a href={link.href}>{link.name}</a>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
-            <div className={styles.contactInfo}>
-              <Phone size={16} />
-              <span>+1 (555) 123-4567</span>
+            
+            <div className={styles.linkColumn}>
+              <h4 className={styles.columnTitle}>Services</h4>
+              <ul className={styles.linksList}>
+                {servicesLinks.map((link, index) => (
+                  <motion.li 
+                    key={index}
+                    whileHover={{ x: 5 }}
+                  >
+                    <a href={link.href}>{link.name}</a>
+                  </motion.li>
+                ))}
+              </ul>
             </div>
-            <div className={styles.contactInfo}>
-              <MapPin size={16} />
-              <span>123 Innovation Drive, San Francisco, CA</span>
+            
+            <div className={styles.linkColumn}>
+              <h4 className={styles.columnTitle}>Industry Solutions</h4>
+              <ul className={styles.linksList}>
+                {industriesLinks.map((link, index) => (
+                  <motion.li 
+                    key={index}
+                    whileHover={{ x: 5 }}
+                  >
+                    <a href={link.href}>{link.name}</a>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className={styles.linkColumn}>
+              <h4 className={styles.columnTitle}>Contact Us</h4>
+              <ul className={styles.contactList}>
+                {contactInfo.map((contact, index) => (
+                  <li key={index} className={styles.contactItem}>
+                    <div className={styles.contactIcon}>
+                      {contact.icon}
+                    </div>
+                    <div className={styles.contactDetails}>
+                      <span className={styles.contactLabel}>{contact.label}</span>
+                      <a href={contact.href} className={styles.contactValue}>{contact.value}</a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              
+              <div className={styles.socialLinks}>
+                {socialLinks.map((social, index) => (
+                  <motion.a 
+                    key={index} 
+                    href={social.href}
+                    className={styles.socialIcon}
+                    whileHover={{ y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
         
-        <div className={styles.bottomBar}>
+        <div className={styles.certifications}>
+          <h4 className={styles.certificationsTitle}>Our Certifications</h4>
+          <div className={styles.certificationsIcons}>
+            {certifications.map((cert, index) => (
+              <div key={index} className={styles.certBadge}>{cert}</div>
+            ))}
+          </div>
+        </div>
+        
+        <div className={styles.footerBottom}>
           <div className={styles.copyright}>
-            © {new Date().getFullYear()} AllBots.io. All rights reserved.
+            © {currentYear} AllBots.io. All rights reserved.
           </div>
           
           <div className={styles.legalLinks}>
-            <a href="#" className={styles.legalLink}>Privacy Policy</a>
-            <a href="#" className={styles.legalLink}>Terms of Service</a>
-            <a href="#" className={styles.legalLink}>Cookie Policy</a>
+            <a href="#privacy" className={styles.legalLink}>Privacy Policy</a>
+            <a href="#terms" className={styles.legalLink}>Terms of Service</a>
+            <a href="#cookies" className={styles.legalLink}>Cookie Policy</a>
           </div>
         </div>
       </div>
