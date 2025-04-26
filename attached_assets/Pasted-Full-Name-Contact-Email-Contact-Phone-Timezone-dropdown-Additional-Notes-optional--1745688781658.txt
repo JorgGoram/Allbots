@@ -1,0 +1,79 @@
+Full Name
+
+Contact Email
+
+Contact Phone
+
+Timezone (dropdown)
+
+Additional Notes (optional)
+
+AI Agent Branding
+
+Agent Name
+
+Brand Voice Style (radio)
+
+Personality Traits (checkboxes)
+
+Voice & Language Settings
+
+Voice Type, Accent, Speaking Pace (selects)
+
+Primary Language, Additional Languages (multi-select)
+
+Industry Terminology (textarea)
+
+Knowledge Base Sources
+
+Website URLs (list)
+
+Document uploads (PDF/text)
+
+Custom FAQs (upload)
+
+Assistant Type & Settings
+
+Inbound vs Outbound flows with their specific fields
+
+Review & Submit
+
+Show a summary of all entered data for confirmation
+
+After each step’s “Next,” validate and save that step’s data to a new profiles table linked to users(id).
+
+Only on final “Submit” of onboarding, mark users.onboarded = TRUE and redirect to /dashboard.
+
+5. Dashboard Integration
+
+Modify /dashboard to read from the joined users + profiles tables.
+
+Display business name, agent settings, and a link to edit profile.
+
+General Requirements & Constraints
+
+Use server-side rendering or client-side routing consistently (e.g., Next.js, Express + EJS, or plain JS + Fetch).
+
+Protect all routes: only authenticated users can access /onboarding and /dashboard.
+
+Sanitize and validate all user inputs to prevent SQL injection or XSS.
+
+Keep styling consistent with the original dashboard’s design system.
+
+Create Git commits per major step (restructure, DB schema, auth pages, each form step, dashboard update) with clear commit messages.
+
+Output & Documentation
+
+Return only code diffs/patches in code blocks for each change.
+
+After each file or schema update, provide a markdown summary:
+
+bash
+Copier
+Modifier
+### Changes in <filename or step>
+- [Summary of what was moved/added/changed]
+- [Why it was done]
+Do not move on until you’ve confirmed the previous step works end-to-end.
+
+Begin by extracting the existing landing-page markup into /index.html (or /pages/index.jsx) and updating routing accordingly. Take your time to verify asset paths and styling before committing.
