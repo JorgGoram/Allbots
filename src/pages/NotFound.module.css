@@ -1,0 +1,49 @@
+
+.notFoundContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  padding: 2rem;
+}
+
+.content {
+  text-align: center;
+  max-width: 600px;
+  padding: 2rem;
+  background: var(--surface-card);
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--accent-color), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.content p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.homeLink {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--accent-color);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.homeLink:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-1px);
+  box-shadow: var(--glow-accent);
+}
