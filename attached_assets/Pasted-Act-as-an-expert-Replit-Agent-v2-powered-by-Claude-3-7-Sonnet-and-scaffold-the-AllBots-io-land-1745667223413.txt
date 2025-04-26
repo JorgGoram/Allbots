@@ -1,0 +1,57 @@
+Act as an expert Replit Agent (v2 powered by Claude 3.7 Sonnet) and scaffold the **AllBots.io** landing page within our existing Replit App. Follow these specifications exactly:
+
+1. **Agent Initialization & Plan Approval**  
+   1.1. Generate and present a **detailed implementation plan** outlining folder structure, component list, tooling, and CI workflows—await my approval before file creation. :contentReference[oaicite:0]{index=0}  
+   1.2. Use the **“Progress”** tab to log each logical step and create an initial checkpoint upon plan approval. :contentReference[oaicite:1]{index=1}  
+
+2. **Project Directory Structure**  
+   - Under `src/`, create a top-level folder: `landing/`.  
+   - Within `landing/`, create:  
+     - `components/`  
+     - `styles/`  
+     - `assets/`  
+     - `tests/`  
+     - `utils/` (for shared helper functions)  
+
+3. **Component & File Scaffolding**  
+   3.1. In `components/`, scaffold **PascalCase** React functional components with accompanying CSS modules:  
+   > • `HeroSection.jsx` + `HeroSection.module.css`  
+   > • `FeaturesGrid.jsx` + `FeaturesGrid.module.css`  
+   > • `HowItWorks.jsx` + `HowItWorks.module.css`  
+   > • `Testimonials.jsx` + `Testimonials.module.css`  
+   > • `CallToAction.jsx` + `CallToAction.module.css`  
+   > • `Footer.jsx` + `Footer.module.css`  
+   3.2. Create a `LandingPage.jsx` that imports/assembles these components in the correct visual order. :contentReference[oaicite:2]{index=2}  
+
+4. **Dependency & Environment Management**  
+   4.1. Ensure **React (v18+)**, **react-router-dom**, and **prop-types** (or TypeScript) are installed.  
+   4.2. Add a `landing/.env.example` file listing any environment variables (e.g., `REACT_APP_API_URL`) with placeholder values.  
+   4.3. Leverage Replit’s sandboxed code execution API to validate environment setup without risking live data. :contentReference[oaicite:3]{index=3}  
+
+5. **Coding Standards & Tooling**  
+   5.1. Configure **ESLint** (Airbnb config) and **Prettier**, enforcing consistent formatting and catching unused variables.  
+   5.2. Install **Husky** with a pre-commit hook to run `npm run lint` and `npm run test -- --watchAll=false`.  
+   5.3. Reference Replit’s CI integration guide to automatically run these checks on each checkpoint. :contentReference[oaicite:4]{index=4}  
+
+6. **Automated Testing Setup**  
+   6.1. In `tests/`, create `LandingPage.test.jsx` using **Jest** and **React Testing Library** to assert that `<LandingPage />` mounts without errors.  
+   6.2. Add snapshot tests for each component’s default render.  
+   6.3. Ensure test coverage threshold is set to **90%** for the landing folder.  
+
+7. **API & Asset Integration**  
+   7.1. If consuming external APIs (e.g., SendGrid or Stripe), add the integration instructions in `utils/apiClients.js` and provide any required docs via URL attachment. :contentReference[oaicite:5]{index=5}  
+   7.2. Place all static images/icons in `assets/` and import them using Webpack’s asset modules.  
+
+8. **Error-Prevention & Quality Assurance**  
+   8.1. After each major scaffold step, run `npm run build` to catch compile errors early.  
+   8.2. Use Replit Agent’s “link preview” feature to verify imported assets and external URLs are correctly fetched. :contentReference[oaicite:6]{index=6}  
+   8.3. Create automatic rollback checkpoints every time tests pass—minimizing rollback costs by bundling related changes. :contentReference[oaicite:7]{index=7}  
+
+9. **Branching & Commit Conventions**  
+   9.1. Create a feature branch: `feature/landing-page-scaffold`.  
+   9.2. Use **conventional commits** (e.g., `feat(landing): scaffold HeroSection component`).  
+   9.3. Upon completing the scaffold and passing all checks, open a pull request titled “Landing page scaffold ready for review.”  
+
+10. **Final Confirmation**  
+    Reply with exactly:  
+    > “Landing page scaffold complete, tests passing, CI checks successful—ready for review.”  
