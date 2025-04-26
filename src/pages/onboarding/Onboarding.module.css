@@ -1,0 +1,92 @@
+
+.onboardingContainer {
+  min-height: 100vh;
+  background: var(--dark-bg);
+  padding: 2rem;
+  color: var(--text-primary);
+}
+
+.progressBar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.progressStep {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--surface-card);
+  position: relative;
+}
+
+.progressStep.active {
+  background: var(--accent-color);
+}
+
+.onboardingForm {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--surface-card);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.navigationButtons button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.navigationButtons button:first-child {
+  background: var(--surface-card-hover);
+  color: var(--text-primary);
+}
+
+.navigationButtons button:last-child {
+  background: var(--accent-color);
+  color: white;
+}
+
+.formStep {
+  display: grid;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-light);
+  background: var(--dark-bg-lighter);
+  color: var(--text-primary);
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
