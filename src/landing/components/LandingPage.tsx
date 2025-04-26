@@ -1,10 +1,6 @@
-
 import React, { useEffect } from 'react';
 import HeroSection from './HeroSection';
 import FeaturesGrid from './FeaturesGrid';
-import HowItWorks from './HowItWorks';
-import CallToAction from './CallToAction';
-import Footer from './Footer';
 import HowItWorks from './HowItWorks';
 import CallToAction from './CallToAction';
 import Footer from './Footer';
@@ -30,12 +26,24 @@ const cssVariables = {
 } as React.CSSProperties;
 
 const LandingPage: React.FC = () => {
-  // Apply CSS variables to document root on component mount
+  // Use effect to set document title and body style
   useEffect(() => {
+    // Set document title
+    document.title = 'AllBots.io - AI-Powered Process Automation';
+
+    // Apply CSS variables to document root
     const rootElement = document.documentElement;
     Object.entries(cssVariables).forEach(([key, value]) => {
       rootElement.style.setProperty(key, value as string);
     });
+
+    // Save original body style
+    const originalBackgroundColor = document.body.style.backgroundColor;
+    const originalOverflow = document.body.style.overflow;
+
+    // Set body styles for landing page
+    document.body.style.backgroundColor = '#050510';
+    document.body.style.overflow = 'auto';
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -53,8 +61,11 @@ const LandingPage: React.FC = () => {
       });
     });
 
-    // Clean up event listeners on unmount
+    // Cleanup function to restore original body style and remove event listeners
     return () => {
+      document.body.style.backgroundColor = originalBackgroundColor;
+      document.body.style.overflow = originalOverflow;
+
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.removeEventListener('click', function(e) {
           e.preventDefault();
@@ -64,41 +75,7 @@ const LandingPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="landing-page">
-      <HeroSection />
-      <FeaturesGrid />
-      <HowItWorks />
-      <CallToAction />
-      <Footer />
-    </div>
-  );
-};
-
-export default LandingPage;
-
-const LandingPage: React.FC = () => {
-  // Use effect to set document title and body style
-  useEffect(() => {
-    // Set document title
-    document.title = 'AllBots.io - AI-Powered Process Automation';
-
-    // Save original body style
-    const originalBackgroundColor = document.body.style.backgroundColor;
-    const originalOverflow = document.body.style.overflow;
-
-    // Set body styles for landing page
-    document.body.style.backgroundColor = '#050510';
-    document.body.style.overflow = 'auto';
-
-    // Cleanup function to restore original body style
-    return () => {
-      document.body.style.backgroundColor = originalBackgroundColor;
-      document.body.style.overflow = originalOverflow;
-    };
-  }, []);
-
-  return (
-    <div style={cssVariables}>
+    <div className="landing-page" style={cssVariables}>
       <HeroSection />
       <FeaturesGrid />
       <HowItWorks />
