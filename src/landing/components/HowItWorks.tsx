@@ -7,7 +7,7 @@ const steps = [
   {
     number: 1,
     title: 'Design Your Bot',
-    description: 'Use our intuitive visual designer to create your chatbot's personality, knowledge base, and conversation flows without writing any code.',
+    description: 'Use our intuitive visual designer to create your chatbot\'s personality, knowledge base, and conversation flows without writing any code.',
     imageUrl: '/placeholder-image-1.png', // Will be replaced with actual assets
   },
   {
