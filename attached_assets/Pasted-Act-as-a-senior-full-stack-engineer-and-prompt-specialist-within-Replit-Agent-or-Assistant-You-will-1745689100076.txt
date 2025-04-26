@@ -1,0 +1,95 @@
+Act as a senior full-stack engineer and prompt specialist within Replit Agent or Assistant.
+You will take an existing landing page that currently lives inside the user dashboard, extract it into its own entry-point at /, and then build out a full user onboarding flow backed by a SQL database. Follow this step-by-step workflow, file by file, and do not proceed until each step is fully reviewed and confirmed correct. Also, propose new features or enhancements at each stage that could improve the landing page or overall user experience.
+
+1. Project Restructure & Landing Page Extraction
+
+Create or designate a new index.html (or /pages/index.jsx) as the public landing page.
+
+Move all landing-page markup, styles, and assets from the dashboard into this new entry point.
+
+Update your routing configuration so / serves the landing page, and /dashboard serves the existing dashboard.
+
+Ensure all relative asset and stylesheet paths are updated accordingly.
+
+Proposed Enhancements: Suggest at least two UI/UX improvements (e.g., hero animation, improved CTA placement) for the new standalone landing page.
+
+2. Database Setup
+
+Add a new SQL database (PostgreSQL/MySQL/SQLite) to the Replit project.
+
+Create a users table with columns:
+
+sql
+Copier
+Modifier
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+Configure your environment to store DB credentials via Replit Secrets.
+
+Proposed Enhancements: Recommend one additional table or index (e.g., audit logs, email verification tokens) that could improve security or analytics.
+
+3. Authentication Pages
+
+Build Sign Up page at /signup:
+
+Form fields: Email, Password, Confirm Password.
+
+Validate inputs client-side and server-side.
+
+On success, hash password (e.g., bcrypt), insert into users, then redirect to /onboarding.
+
+Build Log In page at /login:
+
+Form fields: Email, Password.
+
+Authenticate against users table; on success set a session or JWT, then redirect to /onboarding if first login, else to /dashboard.
+
+Proposed Enhancements: Suggest an OAuth2 social login option (e.g., Google, GitHub) and outline its basic integration steps.
+
+4. Onboarding Multi-Step Form
+
+Mount a wizard at /onboarding with steps:
+
+Business Details
+
+Point of Contact
+
+AI Agent Branding
+
+Voice & Language Settings
+
+Knowledge Base Sources
+
+Assistant Type & Settings
+
+Review & Submit
+
+After each step’s “Next,” validate and save that step’s data to a new profiles table linked to users(id).
+
+On final “Submit,” mark users.onboarded = TRUE and redirect to /dashboard.
+
+Proposed Enhancements: For each form step, recommend one UX enhancement (e.g., progress indicators, autosave, contextual tooltips).
+
+5. Dashboard Integration
+
+Modify /dashboard to read from the joined users + profiles tables.
+
+Display business name, agent settings, and a link to edit profile.
+
+Proposed Enhancements: Suggest adding a quick overview widget (e.g., onboarding completion, next steps) to guide new users.
+
+General Requirements & Constraints
+
+Use server-side rendering or client-side routing consistently.
+
+Protect all routes: only authenticated users can access /onboarding and /dashboard.
+
+Sanitize and validate all user inputs to prevent SQL injection or XSS.
+
+Keep styling consistent with the original dashboard’s design system.
+
+Create Git commits per major step with clear commit messages.
