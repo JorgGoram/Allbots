@@ -147,7 +147,7 @@ const HowItWorks: React.FC = () => {
   
   // Scroll active step into view on mobile
   useEffect(() => {
-    if (window.innerWidth < 768 && stepRefs.current[activeStep]) {
+    if (stepRefs.current[activeStep]) {
       stepRefs.current[activeStep]?.scrollIntoView({
         behavior: 'smooth',
         block: 'nearest',
@@ -155,6 +155,21 @@ const HowItWorks: React.FC = () => {
       });
     }
   }, [activeStep]);
+
+  // Improve mobile touch handling
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      // Prevent default touch behavior on timeline steps
+      if ((e.target as HTMLElement).closest(`.${styles.timelineStep}`)) {
+        setIsPaused(true);
+      }
+    };
+
+    document.addEventListener('touchstart', handleTouchStart);
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+    };
+  }, []);
 
   return (
     <section className={styles.howItWorksSection} id="implementation-timeline">
@@ -188,8 +203,8 @@ const HowItWorks: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Your Journey to 
-            <span className={styles.titleHighlight}> AI-Powered Process Automation</span>
+            Your Journey to&nbsp;
+            <span className={styles.titleHighlight}>AI-Powered Process Automation</span>
           </motion.h2>
           
           <motion.p 
@@ -199,8 +214,8 @@ const HowItWorks: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Our structured implementation approach ensures a smooth transition to automated operations
-            with minimal disruption to your business.
+            Our structured implementation approach ensures a smooth transition to 
+            automated operations with minimal disruption to your business.
           </motion.p>
         </motion.div>
         
@@ -342,7 +357,7 @@ const HowItWorks: React.FC = () => {
                             whileHover={{ x: 5, color: timelineSteps[activeStep].color }}
                           >
                             <span className={styles.detailBullet} style={{ backgroundColor: timelineSteps[activeStep].color }}></span>
-                            {activity}
+                            <span>{activity}</span>
                           </motion.li>
                         ))}
                       </ul>
@@ -363,7 +378,7 @@ const HowItWorks: React.FC = () => {
                             whileHover={{ x: 5, color: timelineSteps[activeStep].color }}
                           >
                             <span className={styles.detailBullet} style={{ backgroundColor: timelineSteps[activeStep].color }}></span>
-                            {deliverable}
+                            <span>{deliverable}</span>
                           </motion.li>
                         ))}
                       </ul>

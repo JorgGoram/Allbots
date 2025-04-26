@@ -43,12 +43,18 @@
   margin: 0 auto;
   padding: 0 2rem;
   z-index: 3;
+  box-sizing: border-box;
 }
 
 .sectionHeader {
   text-align: center;
   max-width: 800px;
   margin: 0 auto 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .sectionTag {
@@ -70,6 +76,9 @@
   font-weight: 800;
   line-height: 1.2;
   margin: 0 0 1.5rem;
+  text-align: center;
+  width: 100%;
+  display: inline-block;
 }
 
 .titleHighlight {
@@ -78,6 +87,8 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+  display: inline;
+  white-space: nowrap;
 }
 
 .sectionDescription {
@@ -325,12 +336,20 @@
 
 .detailsList li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.75rem;
   margin-bottom: 0.75rem;
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.7);
   transition: all 0.3s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.detailsList li span {
+  display: inline-block;
+  text-align: left;
+  flex: 1;
 }
 
 .detailBullet {
@@ -339,6 +358,7 @@
   background-color: var(--accent-color);
   border-radius: 50%;
   flex-shrink: 0;
+  margin-top: 0.5rem;
 }
 
 .timelineFooter {
@@ -456,6 +476,8 @@
   transition: all 0.3s ease;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(var(--accent-color-rgb), 0.3);
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .buttonIcon {
@@ -503,14 +525,22 @@
   .clientSuccess {
     padding: 2.5rem;
   }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
 }
 
 @media (max-width: 1024px) {
   .timelineContainer {
-    padding: 0 2rem;
+    padding: 0;
+    max-width: 100%;
   }
   .sectionTitle {
     font-size: 2.5rem;
+  }
+  .container {
+    padding: 0 1.5rem;
   }
 }
 
@@ -552,7 +582,7 @@
   }
   .timelineContent {
     padding: 2rem;
-    min-height: 0;
+    min-height: auto;
   }
   .clientSuccess {
     padding: 2rem;
@@ -570,6 +600,15 @@
   .milestoneDot {
     left: 2rem;
   }
+  .container {
+    padding: 0 1rem;
+  }
+  .sectionTitle {
+    font-size: 2.2rem;
+  }
+  .titleHighlight {
+    white-space: normal;
+  }
 }
 
 @media (max-width: 768px) {
@@ -578,9 +617,11 @@
   }
   .sectionTitle {
     font-size: 2.2rem;
+    line-height: 1.3;
   }
   .sectionDescription {
     font-size: 1.1rem;
+    padding: 0 0.5rem;
   }
   .timelineNav {
     flex-wrap: nowrap;
@@ -604,9 +645,14 @@
     margin: 0 0.5rem;
     padding: 1rem;
     scroll-snap-align: start;
+    flex-shrink: 0;
   }
   .timelineStep:first-child {
     margin-left: 0;
+  }
+  .timelineStep:last-child {
+    margin-right: 0;
+    padding-right: 1rem;
   }
   .timelineProgress {
     margin: 0 0 1.5rem;
@@ -620,7 +666,15 @@
   .milestone {
     margin-bottom: 4rem;
   }
-
+  .container {
+    padding: 0 1rem;
+  }
+  .sectionHeader {
+    padding: 0 1rem;
+  }
+  .timelineContainer {
+    padding: 0;
+  }
 }
 
 @media (max-width: 640px) {
@@ -630,6 +684,7 @@
   .timelineContent {
     padding: 1.5rem;
     border-radius: 16px;
+    margin: 0 0.5rem;
   }
   .stepIconContainer {
     width: 80px;
@@ -649,6 +704,7 @@
   .clientSuccess {
     padding: 1.5rem;
     border-radius: 16px;
+    margin: 0 0.5rem;
   }
   .clientSuccessIcon {
     width: 60px;
@@ -662,10 +718,57 @@
   }
   .ctaButton {
     width: 100%;
+
+/* Fix overflow issues */
+.timelineContainer {
+  overflow-x: hidden;
+}
+
+.timelineNav {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+}
+
+.timelineNav::-webkit-scrollbar {
+  height: 4px;
+}
+
+.timelineNav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Fix text wrapping on small screens */
+.stepPhase, .stepTitle {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Improve tap targets on mobile */
+@media (max-width: 480px) {
+  .detailsList li {
+    margin-bottom: 1rem;
+    padding: 0.25rem 0;
+  }
+  
+  .timelineStep {
+    touch-action: manipulation;
+  }
+  
+  .ctaButton {
+    padding: 1.2rem;
+    margin-top: 1rem;
+  }
+}
+
     padding: 1rem 1.5rem;
+    max-width: 90%;
   }
   .sectionTitle {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    line-height: 1.3;
+    max-width: 100%;
   }
   .titleHighlight {
     display: inline;
@@ -673,10 +776,19 @@
   }
   .stepDetails {
     margin-top: 1rem;
+    width: 100%;
+  }
+  .detailsList {
+    width: 100%;
+  }
+  .detailsList li {
+    text-align: left;
+    width: 100%;
   }
   .detailsTitle {
     font-size: 1.1rem;
     margin-bottom: 1rem;
+    text-align: left;
   }
   .timelinePath {
     left: 1rem;
@@ -696,9 +808,6 @@
   .sectionHeader {
     margin-bottom: 3rem;
   }
-  .sectionTitle {
-    font-size: 2rem;
-  }
   .milestoneCard {
     padding: 1.5rem;
   }
@@ -707,6 +816,12 @@
   }
   .milestoneTitle {
     font-size: 1.2rem;
+  }
+  .container {
+    padding: 0 0.5rem;
+  }
+  .sectionDescription {
+    padding: 0 0.5rem;
   }
 }
 
@@ -718,14 +833,57 @@
     font-size: 0.7rem;
   }
   .sectionTitle {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    line-height: 1.3;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  .titleHighlight {
+    white-space: normal;
+    display: inline;
   }
   .sectionDescription {
     font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+  .timelineNav {
+    margin: 0 -1px 1rem;
+    padding-left: 0.5rem;
+  }
+  .timelineStep {
+    min-width: 200px;
+    margin: 0 0.25rem;
+    padding: 0.75rem;
+  }
+  .timelineContent {
+    margin: 0 0.25rem;
+  }
+  .clientSuccess {
+    margin: 0 0.25rem;
   }
   .milestone {
     padding-left: 3rem;
   }
+  .ctaTitle {
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  .container {
+    max-width: 100%;
+    padding: 0 0.5rem;
+  }
+}
+
+/* Make sure timeline steps are always visible */
+.timelineStep {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Fix the scrolling issues with timeline */
+.timelineNav {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 .milestoneCard:hover .milestoneContent {
