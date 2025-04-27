@@ -170,7 +170,15 @@ html {
 /* Layout adjustment for fixed header */
 main, .main-content {
   padding-top: var(--header-height);
-  margin-top: 3rem; /* Add space between header and content */
+  margin-top: 3rem;
+}
+
+/* Responsive header adjustments */
+@media (max-width: 768px) {
+  .landing-page header {
+    height: auto;
+    min-height: 64px;
+  }
 }
 
 @media (min-width: 768px) {
