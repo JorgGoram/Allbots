@@ -11,7 +11,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-2">
               <span className="text-xl font-bold text-white">
-                allbots
+                Allbots
               </span>
             </Link>
           </div>
@@ -45,4 +45,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default Header1;

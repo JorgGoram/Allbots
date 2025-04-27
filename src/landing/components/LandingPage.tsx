@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Header from './Header';
+import Header from './Header1';
 import HeroSection from './HeroSection';
 import FeaturesGrid from './FeaturesGrid';
 import HowItWorks from './HowItWorks';
@@ -83,7 +83,8 @@ const LandingPage: React.FC = () => {
       <FeaturesGrid />
       <HowItWorks />
       <CallToAction />
-      <Footer />
+      <Footer/>
+      </div>
     </div>
   );
 };
