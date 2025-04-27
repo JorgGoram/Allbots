@@ -80,12 +80,12 @@ const LandingPage: React.FC = () => {
       <Header />
       <div className="pt-14">
         <HeroSection />
-      <FeaturesGrid />
-      <HowItWorks />
-      <CallToAction />
-      <Footer/>
-    </div>
+        <FeaturesGrid />
+        <HowItWorks />
+        <CallToAction />
+        <Footer/>
       </div>
+    </div>
   );
 };
 
