@@ -76,9 +76,10 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="landing-page min-h-screen" style={cssVariables}>
-      <HeroSection />
-      <FeaturesGrid />
-      <HowItWorks />
+      <div>
+        <HeroSection />
+        <FeaturesGrid />
+        <HowItWorks />
         <CallToAction />
         <Footer />
       </div>
