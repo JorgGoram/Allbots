@@ -83,8 +83,9 @@ const LandingPage: React.FC = () => {
       <FeaturesGrid />
       <HowItWorks />
       <CallToAction />
-      <Footer />
+      <Footer/>
     </div>
+      </div>
   );
 };
 
