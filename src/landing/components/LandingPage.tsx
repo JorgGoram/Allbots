@@ -76,10 +76,9 @@ const LandingPage: React.FC = () => {
   }, []);
 
   return (
-    <div className="landing-page min-h-screen" style={cssVariables}>
+    <div className="landing-page" style={cssVariables}>
       <Header />
-      <div className="pt-14">
-        <HeroSection />
+      <HeroSection />
       <FeaturesGrid />
       <HowItWorks />
       <CallToAction />
