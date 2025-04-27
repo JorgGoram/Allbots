@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Header from './Header';
 import HeroSection from './HeroSection';
 import FeaturesGrid from './FeaturesGrid';
 import HowItWorks from './HowItWorks';
@@ -76,12 +77,13 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="landing-page min-h-screen" style={cssVariables}>
-      <div>
+      <Header />
+      <div className="pt-14">
         <HeroSection />
         <FeaturesGrid />
         <HowItWorks />
         <CallToAction />
-        <Footer />
+        <Footer/>
       </div>
     </div>
   );
