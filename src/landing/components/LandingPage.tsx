@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Header from './Header';
 import HeroSection from './HeroSection';
 import FeaturesGrid from './FeaturesGrid';
 import HowItWorks from './HowItWorks';
@@ -76,6 +77,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <div className="landing-page" style={cssVariables}>
+      <Header />
       <HeroSection />
       <FeaturesGrid />
       <HowItWorks />
